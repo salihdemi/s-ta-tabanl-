@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,9 @@ public class Skill : ScriptableObject
     public Animation animation;
     [SerializeField]
     public Button x;
-    public void Method()
+    public void Method(CharacterBase user)
     {
+        Debug.Log(user.name + " " + name);
         //animasyonu oynat
         //animator.SetBool("IsAttacking", true);
 

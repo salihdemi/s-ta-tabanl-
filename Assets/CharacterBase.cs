@@ -53,7 +53,7 @@ public class CharacterBase : MonoBehaviour
     public void Subs()//Buton
     {
         //secili saldýrýyý yap
-        Lunge.AddListener(skill.Method);
+        Lunge.AddListener(() => skill.Method(this));
 
         //Karakter animasyonu oynat
 
