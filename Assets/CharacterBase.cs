@@ -12,17 +12,19 @@ public class CharacterBase : MonoBehaviour
     public float speed;
     private float currentHealth;
 
+    public Animator animator;
 
-    //public UnityEvent Lunge;
+    public UnityEvent Lunge;
 
 
     public Button x;
 
-    /*public void ClearLunge()
+    public Skill skill;
+
+    public void ClearLunge()
     {
         Lunge.RemoveAllListeners();
-        Lunge.AddListener(ClearLunge);
-    }*/
+    }
     public void DecreaseHealth(float damage)
     {
         if (currentHealth > damage)
@@ -43,16 +45,18 @@ public class CharacterBase : MonoBehaviour
     public void ClosePanel()
     {
         x.gameObject.SetActive(false);
-        NewBehaviourScript.instance.OpenNextCharacterPannel();
+        FightManager.instance.OpenNextCharacterPannel();
     }
     public void Atatck()
     {
-        Debug.Log(name + " " + baseAttackPower + " " + "hasar vurdu");
     }
-
-    public void subs()
+    public void Subs()//Buton
     {
-        NewBehaviourScript.instance.UnityEvent.AddListener(Atatck);
+        //secili saldýrýyý yap
+        Lunge.AddListener(skill.Method);
+
+        //Karakter animasyonu oynat
+
         ClosePanel();
     }
 }

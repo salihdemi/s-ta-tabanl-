@@ -4,16 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class NewBehaviourScript : MonoBehaviour
+public class FightManager : MonoBehaviour
 {
-    public static NewBehaviourScript instance;
-
-    NewBehaviourScript()
+    public static FightManager instance;
+    FightManager()
     {
         instance = this;
     }
 
-    public UnityEvent UnityEvent;
     public CharacterBase[] Characters;
     public int characterOrder;
 
@@ -21,21 +19,29 @@ public class NewBehaviourScript : MonoBehaviour
     {
         StartFight();
     }
+
     public void StartFight()
     {
         //UI aç
         StartTour();
     }
+
     public void StartTour()
     {
+        foreach (CharacterBase item in Characters)
+        {
+            item.ClearLunge();
+        }
         SortWithSpeed();
         characterOrder = 0;
         OpenNextCharacterPannel();
     }
+
     private void Update()
     {
-        Debug.Log(characterOrder);
+        //Debug.Log(Characters[0].Lunge);
     }
+
     public void OpenNextCharacterPannel()
     {
 
@@ -43,19 +49,28 @@ public class NewBehaviourScript : MonoBehaviour
         {
             Debug.Log("tüm hamleler yapýldý");
             //oynat
-            UnityEvent.Invoke();
-            StartTour();
+            StartCoroutine(Play());
         }
         else
         {
-
             Characters[characterOrder].OpenPanel();
             characterOrder++;
         }
     }
+
     private void SortWithSpeed()
     {
         Array.Sort(Characters, (a, b) => b.speed.CompareTo(a.speed));
+    }
+
+    private IEnumerator Play()
+    {
+        foreach (CharacterBase item in Characters)
+        {
+            item.Lunge.Invoke();
+            yield return new WaitForSeconds(1);
+        }
+        StartTour();
     }
 
 
