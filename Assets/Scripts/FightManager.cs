@@ -1,8 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class FightManager : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class FightManager : MonoBehaviour
 
     public CharacterBase[] Characters;
     public int characterOrder;
+
+    public Animator animator;
 
     private void Start()
     {

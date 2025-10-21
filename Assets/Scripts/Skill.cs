@@ -5,12 +5,18 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Skill", menuName = "Scriptable Objects/Skill")]
 public class Skill : ScriptableObject
 {
-    public Animation animation;
-    [SerializeField]
-    public Button x;
+    //[SerializeField]
+    //private AnimationClip clip;
+    //public Button x;
+    Skill()
+    { 
+
+    }
     public void Method(CharacterBase user)
     {
         Debug.Log(user.name + " " + name);
+
+        FightManager.instance.animator.Play("New Animation");
         //animasyonu oynat
         //animator.SetBool("IsAttacking", true);
 

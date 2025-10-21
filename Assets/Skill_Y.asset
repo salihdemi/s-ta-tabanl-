@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0fa0fcaa4a50134a9aba86e1f77dd6e, type: 3}
   m_Name: Skill_Y
   m_EditorClassIdentifier: Assembly-CSharp::Skill
-  animation: {fileID: 0}
-  x: {fileID: 0}
+  clip: {fileID: 0}

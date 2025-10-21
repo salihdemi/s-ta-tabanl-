@@ -12,19 +12,26 @@ public class CharacterBase : MonoBehaviour
     public float speed;
     private float currentHealth;
 
-    public Animator animator;
+    private Animator animator;
 
+    [HideInInspector]
     public UnityEvent Lunge;
 
+    private CharacterActionPanel characterActionPanel;
 
-    public Button x;
+    private List<Skill> skills = new List<Skill>();
 
-    public Skill skill;
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        characterActionPanel = transform.GetChild(0).GetComponent<CharacterActionPanel>();
+    }
 
     public void ClearLunge()
     {
         Lunge.RemoveAllListeners();
     }
+
     public void DecreaseHealth(float damage)
     {
         if (currentHealth > damage)
@@ -38,19 +45,23 @@ public class CharacterBase : MonoBehaviour
         }
         //ui da göster
     }
+
     public void OpenPanel()
     {
-        x.gameObject.SetActive(true);
+        characterActionPanel.gameObject.SetActive(true);
     }
+
     public void ClosePanel()
     {
-        x.gameObject.SetActive(false);
+        characterActionPanel.gameObject.SetActive(false);
         FightManager.instance.OpenNextCharacterPannel();
     }
+
     public void Atatck()
     {
     }
-    public void Subs()//Buton
+
+    public void Subs(Skill skill)//Buton
     {
         //secili saldýrýyý yap
         Lunge.AddListener(() => skill.Method(this));
@@ -58,5 +69,19 @@ public class CharacterBase : MonoBehaviour
         //Karakter animasyonu oynat
 
         ClosePanel();
+    }
+
+
+    public void LearnSkill(Skill skill)
+    {
+        Debug.Log(skill.ToString());
+        if(skills.Contains(skill))
+        {
+            Debug.Log("bu skill zaten öðrenilmiþ");
+            return;
+        }
+        Debug.Log("Skill öðrenliyor");
+        skills.Add(skill);
+        characterActionPanel.AddSkill(skill);
     }
 }
