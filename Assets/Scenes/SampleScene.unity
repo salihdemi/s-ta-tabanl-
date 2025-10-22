@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _name: e3
-  speed: 6
+  speed: 1
   Lunge:
     m_PersistentCalls:
       m_Calls: []
@@ -253,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2055614218}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -268,7 +268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Subs
+      value: SetLunge
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -276,7 +276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CharacterBase, Assembly-CSharp
+      value: Ally, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -467,7 +467,7 @@ PrefabInstance:
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2057720213}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -482,7 +482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Subs
+      value: SetLunge
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -490,7 +490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CharacterBase, Assembly-CSharp
+      value: Ally, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -908,7 +908,7 @@ PrefabInstance:
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 460201757}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -923,7 +923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Subs
+      value: SetLunge
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -931,7 +931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CharacterBase, Assembly-CSharp
+      value: Ally, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _name: e1
-  speed: 6
+  speed: 1
   Lunge:
     m_PersistentCalls:
       m_Calls: []
@@ -1417,7 +1417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _name: e2
-  speed: 7
+  speed: 1
   Lunge:
     m_PersistentCalls:
       m_Calls: []
@@ -1556,7 +1556,7 @@ PrefabInstance:
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1258335079}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -1571,7 +1571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Subs
+      value: SetLunge
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -1579,7 +1579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CharacterBase, Assembly-CSharp
+      value: Ally, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 722269203521416254, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName

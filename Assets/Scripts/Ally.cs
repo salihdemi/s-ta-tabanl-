@@ -5,9 +5,8 @@ public class Ally : CharacterBase
     private CharacterActionPanel characterActionPanel;
 
 
-    private void Start()
+    private void Awake()
     {
-
         characterActionPanel = transform.GetChild(0).GetComponent<CharacterActionPanel>();
     }
 

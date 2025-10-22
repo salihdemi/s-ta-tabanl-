@@ -11,7 +11,6 @@ public class Enemy : CharacterBase
 
     public override void Play()
     {
-        Debug.Log(name + "hamle yaptý");
         //Random hamle ver
         //SetLunge
         Over();

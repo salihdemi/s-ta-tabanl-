@@ -57,6 +57,7 @@ public class FightManager : MonoBehaviour
         else
         {
             characterOrder++;
+            Debug.Log(Characters[characterOrder - 1]+" hamlesini seçiyor");
             Characters[characterOrder-1].Play();
         }
     }
@@ -68,6 +69,7 @@ public class FightManager : MonoBehaviour
 
     private IEnumerator Play()
     {
+        Debug.Log("Oynat");
         foreach (CharacterBase item in CharactersSortedWithSpeed)
         {
             item.Lunge.Invoke();
