@@ -27,21 +27,25 @@ public class FightManager : MonoBehaviour
     public void StartFight()
     {
         //UI aç
+        //Karakterleri diz
         StartTour();
     }
 
     public void StartTour()
     {
+        ClearLunges();
+        SortWithSpeed();
+        characterOrder = 0;
+        LetPlayNextCharacter();
+    }
+    private void ClearLunges()
+    {
         foreach (CharacterBase item in Characters)
         {
             item.ClearLunge();
         }
-        SortWithSpeed();
-        characterOrder = 0;
-        OpenNextCharacterPannel();
     }
-
-    public void OpenNextCharacterPannel()
+    public void LetPlayNextCharacter()//daha düzgün fonksiyonla
     {
 
         if (characterOrder == Characters.Length)
@@ -52,8 +56,8 @@ public class FightManager : MonoBehaviour
         }
         else
         {
-            Characters[characterOrder].OpenPanel();
             characterOrder++;
+            Characters[characterOrder-1].Play();
         }
     }
 
