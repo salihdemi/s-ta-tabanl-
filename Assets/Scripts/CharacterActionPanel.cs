@@ -70,8 +70,7 @@ public class CharacterActionPanel : MonoBehaviour
         foodsPanel.SetActive(false);
         toysPanel.SetActive(false);
     }
-
-    public void AddSkill(Skill skill)
+    /*public void AddSkill(Skill skill)
     {
         //Buton
         GameObject newSkillButton = new GameObject(skill.name + "_Button");
@@ -91,5 +90,5 @@ public class CharacterActionPanel : MonoBehaviour
         button.onClick.AddListener(() => skill.Method(character));
         button.onClick.AddListener(() => skillsPanel.SetActive(false));
     }
-
+    */
 }

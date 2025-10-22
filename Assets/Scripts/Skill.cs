@@ -16,7 +16,7 @@ public class Skill : ScriptableObject
     {
         Debug.Log(user.name + " " + name);
 
-        FightManager.instance.animator.Play("New Animation");
+        //FightManager.instance.animator.Play("New Animation");
         //animasyonu oynat
         //animator.SetBool("IsAttacking", true);
 

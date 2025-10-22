@@ -82,6 +82,6 @@ public class CharacterBase : MonoBehaviour
         }
         Debug.Log("Skill öðrenliyor");
         skills.Add(skill);
-        characterActionPanel.AddSkill(skill);
+        //characterActionPanel.AddSkill(skill);
     }
 }

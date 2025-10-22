@@ -1779,6 +1779,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1792735999291120035, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
+      propertyPath: skillButtonPrefab
+      value: 
+      objectReference: {fileID: 2105803331245984156, guid: b618427daab67b8489ca5c0856c03231, type: 3}
     - target: {fileID: 3138675041691393133, guid: 799a7f515f44117408ac4e77a9897afb, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
