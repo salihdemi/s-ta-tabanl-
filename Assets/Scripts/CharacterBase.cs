@@ -71,8 +71,7 @@ public class CharacterBase : MonoBehaviour
         ClosePanel();
     }
 
-
-    public void LearnSkill(Skill skill)
+    /*public void LearnSkill(Skill skill)
     {
         Debug.Log(skill.ToString());
         if(skills.Contains(skill))
@@ -84,4 +83,5 @@ public class CharacterBase : MonoBehaviour
         skills.Add(skill);
         //characterActionPanel.AddSkill(skill);
     }
+    */
 }

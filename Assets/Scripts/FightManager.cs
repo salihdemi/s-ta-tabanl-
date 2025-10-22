@@ -11,13 +11,16 @@ public class FightManager : MonoBehaviour
         instance = this;
     }
 
-    public CharacterBase[] Characters;
+    [SerializeField]
+    private CharacterBase[] Characters;
+    private CharacterBase[] CharactersSortedWithSpeed;
     public int characterOrder;
 
     public Animator animator;
 
     private void Start()
     {
+        CharactersSortedWithSpeed = Characters;
         StartFight();
     }
 
@@ -38,11 +41,6 @@ public class FightManager : MonoBehaviour
         OpenNextCharacterPannel();
     }
 
-    private void Update()
-    {
-        //Debug.Log(Characters[0].Lunge);
-    }
-
     public void OpenNextCharacterPannel()
     {
 
@@ -61,12 +59,12 @@ public class FightManager : MonoBehaviour
 
     private void SortWithSpeed()
     {
-        Array.Sort(Characters, (a, b) => b.speed.CompareTo(a.speed));
+        Array.Sort(CharactersSortedWithSpeed, (a, b) => b.speed.CompareTo(a.speed));
     }
 
     private IEnumerator Play()
     {
-        foreach (CharacterBase item in Characters)
+        foreach (CharacterBase item in CharactersSortedWithSpeed)
         {
             item.Lunge.Invoke();
             yield return new WaitForSeconds(1);
