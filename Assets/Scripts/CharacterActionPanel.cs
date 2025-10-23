@@ -1,10 +1,11 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterActionPanel : MonoBehaviour
 {
-    private CharacterBase character;
+    private Ally character;
 
     private TextMeshProUGUI nameText;
     private Transform buttonsParent;
@@ -19,10 +20,11 @@ public class CharacterActionPanel : MonoBehaviour
     private GameObject foodsPanel;
     private GameObject toysPanel;
 
-    private Transform x;
+
+    public GameObject prefab;
     private void Start()
     {
-        character = GetComponentInParent<CharacterBase>();
+        character = GetComponentInParent<Ally>();
         FindFirstChilds();
         FindButtons();
         FindPanels();
@@ -49,8 +51,6 @@ public class CharacterActionPanel : MonoBehaviour
         skillsPanel = panelsParent.GetChild(0).gameObject;
         foodsPanel = panelsParent.GetChild(1).gameObject;
         toysPanel = panelsParent.GetChild(2).gameObject;
-
-        x=skillsPanel.transform.GetChild(0);
     }
     private void WriteName()
     {
@@ -70,25 +70,30 @@ public class CharacterActionPanel : MonoBehaviour
         foodsPanel.SetActive(false);
         toysPanel.SetActive(false);
     }
-    /*public void AddSkill(Skill skill)
+    public void AddSkill(Skill skill) //bileþenlere eriþemiyor
     {
         //Buton
+        //Instantiate(prefab, skillsPanel.transform.GetChild(0));
+
         GameObject newSkillButton = new GameObject(skill.name + "_Button");
-        //newSkillButton.transform.parent = skillsPanel.transform.GetChild(0);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        newSkillButton.transform.parent = x;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        newSkillButton.transform.parent = skillsPanel.transform.GetChild(0);
         newSkillButton.AddComponent<CanvasRenderer>();
         newSkillButton.AddComponent<Image>();
         Button button = newSkillButton.AddComponent<Button>();
 
+        
         //Text
         GameObject ButtonText = new GameObject("text");
         ButtonText.transform.parent = newSkillButton.transform;
-        Text text= ButtonText.AddComponent<Text>();
+        TextMeshProUGUI text = ButtonText.AddComponent<TextMeshProUGUI>();
         text.text = skill.name;
+        text.color = Color.black;
+        //text.fontSize = 12;
         
         //Buton event
-        button.onClick.AddListener(() => skill.Method(character));
+        button.onClick.AddListener(() => character.SetLunge(skill));
         button.onClick.AddListener(() => skillsPanel.SetActive(false));
+        
     }
-    */
+    
 }

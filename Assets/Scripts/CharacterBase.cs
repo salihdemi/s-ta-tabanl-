@@ -37,7 +37,8 @@ public abstract class CharacterBase : MonoBehaviour
     public abstract void Over();
     public abstract void SetLunge(Skill skill);
 
-    /*public void LearnSkill(Skill skill)
+    /*
+    public void LearnSkill(Skill skill)
     {
         Debug.Log(skill.ToString());
         if(skills.Contains(skill))
