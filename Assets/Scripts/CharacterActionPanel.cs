@@ -70,7 +70,7 @@ public class CharacterActionPanel : MonoBehaviour
         foodsPanel.SetActive(false);
         toysPanel.SetActive(false);
     }
-    public void AddSkill(Skill skill) //bileþenlere eriþemiyor
+    public void AddSkill(Skill skill)
     {
         //Buton
         //Instantiate(prefab, skillsPanel.transform.GetChild(0));

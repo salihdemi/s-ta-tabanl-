@@ -31,4 +31,19 @@ public class Ally : CharacterBase
         characterActionPanel.gameObject.SetActive(false);
         FightManager.instance.LetPlayNextCharacter();
     }
+
+
+
+    public void LearnSkill(Skill skill)
+    {
+        Debug.Log(skill.ToString());
+        if(skills.Contains(skill))
+        {
+            Debug.Log("bu skill zaten öðrenilmiþ");
+            return;
+        }
+        Debug.Log("Skill öðrenldi");
+        skills.Add(skill);
+        characterActionPanel.AddSkill(skill);
+    }
 }

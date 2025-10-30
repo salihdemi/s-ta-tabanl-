@@ -18,7 +18,7 @@ public abstract class CharacterBase : MonoBehaviour
     public UnityEvent Lunge;
 
 
-    private List<Skill> skills = new List<Skill>();
+    protected List<Skill> skills = new List<Skill>();
 
     private void Awake()
     {
@@ -37,19 +37,5 @@ public abstract class CharacterBase : MonoBehaviour
     public abstract void Over();
     public abstract void SetLunge(Skill skill);
 
-    /*
-    public void LearnSkill(Skill skill)
-    {
-        Debug.Log(skill.ToString());
-        if(skills.Contains(skill))
-        {
-            Debug.Log("bu skill zaten öðrenilmiþ");
-            return;
-        }
-        Debug.Log("Skill öðrenliyor");
-        skills.Add(skill);
-        //characterActionPanel.AddSkill(skill);
-    }
-    */
     
 }
