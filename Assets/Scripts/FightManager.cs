@@ -36,7 +36,7 @@ public class FightManager : MonoBehaviour
         ClearLunges();
         SortWithSpeed();
         characterOrder = 0;
-        LetPlayNextCharacter();
+        CheckNextCharacter();
     }
     private void ClearLunges()
     {
@@ -45,9 +45,8 @@ public class FightManager : MonoBehaviour
             item.ClearLunge();
         }
     }
-    public void LetPlayNextCharacter()//daha düzgün fonksiyonla
+    public void CheckNextCharacter()//daha düzgün fonksiyonla
     {
-
         if (characterOrder == Characters.Length)
         {
             Debug.Log("tüm hamleler yapýldý");
@@ -57,9 +56,13 @@ public class FightManager : MonoBehaviour
         else
         {
             characterOrder++;
-            Debug.Log(Characters[characterOrder - 1]+" hamlesini seçiyor");
-            Characters[characterOrder-1].Play();
+            LetNextPlayertoPlay();
         }
+    }
+    private void LetNextPlayertoPlay()
+    {
+        Debug.Log(Characters[characterOrder - 1] + " hamlesini seçiyor");
+        Characters[characterOrder - 1].Play();
     }
 
     private void SortWithSpeed()

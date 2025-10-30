@@ -2,14 +2,9 @@ using UnityEngine;
 
 public class Ally : CharacterBase
 {
-    private CharacterActionPanel characterActionPanel;
+    public Skill attack;
 
-
-    private void Awake()
-    {
-        characterActionPanel = transform.GetChild(0).GetComponent<CharacterActionPanel>();
-    }
-
+    public CharacterActionPanel characterActionPanel;
 
     public override void SetLunge(Skill skill)
     {
@@ -24,12 +19,13 @@ public class Ally : CharacterBase
     public override void Play()
     {
         characterActionPanel.gameObject.SetActive(true);
+        characterActionPanel.WriteThings(this);
     }
 
     public override void Over()
     {
         characterActionPanel.gameObject.SetActive(false);
-        FightManager.instance.LetPlayNextCharacter();
+        FightManager.instance.CheckNextCharacter();
     }
 
 
@@ -44,6 +40,6 @@ public class Ally : CharacterBase
         }
         Debug.Log("Skill öðrenldi");
         skills.Add(skill);
-        characterActionPanel.AddSkill(skill);
     }
+
 }

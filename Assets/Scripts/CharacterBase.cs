@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,8 @@ public abstract class CharacterBase : MonoBehaviour
     public UnityEvent Lunge;
 
 
-    protected List<Skill> skills = new List<Skill>();
+    public List<Skill> skills = new List<Skill>();
+
 
     private void Awake()
     {
@@ -33,7 +35,7 @@ public abstract class CharacterBase : MonoBehaviour
 
 
 
-    public abstract void Play();
+    public abstract void  Play();
     public abstract void Over();
     public abstract void SetLunge(Skill skill);
 

@@ -5,7 +5,22 @@ using UnityEngine.UI;
 
 public class CharacterActionPanel : MonoBehaviour
 {
-    private Ally character;
+    /*
+    public static CharacterActionPanel instance;
+    CharacterActionPanel()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("Birden fazla CharacterActionPanel var");
+            Debug.Log(this);
+            Destroy(gameObject);
+        }
+    }
+    */
 
     private TextMeshProUGUI nameText;
     private Transform buttonsParent;
@@ -20,19 +35,20 @@ public class CharacterActionPanel : MonoBehaviour
     private GameObject foodsPanel;
     private GameObject toysPanel;
 
+    ///karaktere sýra gelir
+    ///bütün paneller ona göre yazýlýr
 
-    public GameObject prefab;
-    private void Start()
+
+    private void Awake()
     {
-        character = GetComponentInParent<Ally>();
         FindFirstChilds();
         FindButtons();
         FindPanels();
 
-        WriteName();
-
         AssignButtons();
     }
+
+    #region Finds-Assigns
     private void FindFirstChilds()
     {
         nameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -52,17 +68,14 @@ public class CharacterActionPanel : MonoBehaviour
         foodsPanel = panelsParent.GetChild(1).gameObject;
         toysPanel = panelsParent.GetChild(2).gameObject;
     }
-    private void WriteName()
-    {
-        nameText.text = character.name;
-    }
-
     private void AssignButtons()
     {
         skillsButton.onClick.AddListener(() => skillsPanel.SetActive(true));
         foodsButton.onClick.AddListener(() => foodsPanel.SetActive(true));
         toysButton.onClick.AddListener(() => toysPanel.SetActive(true));
     }
+    #endregion
+
 
     public void DisableAllPanels()
     {
@@ -70,11 +83,54 @@ public class CharacterActionPanel : MonoBehaviour
         foodsPanel.SetActive(false);
         toysPanel.SetActive(false);
     }
+
+    public void WriteThings(Ally character)
+    {
+        WriteName(character);
+        WriteAttack(character);
+        WriteSkillsPanel(character);
+        WriteFoodsPanel();
+        WriteToysPanel();
+    }
+
+
+    #region Write
+    private void WriteName(Ally character)
+    {
+        nameText.text = character.name;
+    }
+    private void WriteAttack(Ally character)
+    {
+        attackButton.onClick.AddListener(() => character.SetLunge(character.attack));
+    }
+    private void WriteSkillsPanel(Ally character)
+    {
+        foreach (Transform child in skillsPanel.transform.GetChild(0))
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (Skill skill in character.skills)
+        {
+            Debug.Log(skill.name+" butonu eklendi");
+            skill.AddButton(character, skillsPanel);
+        }
+    }
+    private void WriteFoodsPanel()
+    {
+        //Yemekleri yaz, !bu fonksiyona hiç gerek olmayadabilir
+    }
+    private void WriteToysPanel()
+    {
+        //Oyuncaklarý yaz, !bu fonksiyona hiç gerek olmayadabilir
+    }
+    #endregion
+
+
+    /*
     public void AddSkill(Skill skill)
     {
         //Buton
-        //Instantiate(prefab, skillsPanel.transform.GetChild(0));
-
         GameObject newSkillButton = new GameObject(skill.name + "_Button");
         newSkillButton.transform.parent = skillsPanel.transform.GetChild(0);
         newSkillButton.AddComponent<CanvasRenderer>();
@@ -95,5 +151,5 @@ public class CharacterActionPanel : MonoBehaviour
         button.onClick.AddListener(() => skillsPanel.SetActive(false));
         
     }
-    
+    */
 }

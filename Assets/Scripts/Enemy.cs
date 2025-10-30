@@ -18,6 +18,6 @@ public class Enemy : CharacterBase
 
     public override void Over()
     {
-        FightManager.instance.LetPlayNextCharacter();
+        FightManager.instance.CheckNextCharacter();
     }
 }
