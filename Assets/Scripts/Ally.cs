@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class Ally : CharacterBase
 {
     public Skill attack;
@@ -8,7 +9,7 @@ public class Ally : CharacterBase
 
     public override void SetLunge(Skill skill)
     {
-        //secili saldýrýyý yap
+        //secili saldýrýyý iþaretle
         Lunge.AddListener(() => skill.Method(this));
 
         //Karakter animasyonu oynat

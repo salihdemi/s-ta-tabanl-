@@ -11,8 +11,7 @@ public class FightManager : MonoBehaviour
         instance = this;
     }
 
-    [SerializeField]
-    private CharacterBase[] Characters;
+    [SerializeField] private CharacterBase[] Characters;
     private CharacterBase[] CharactersSortedWithSpeed;
     public int characterOrder;
 
@@ -24,12 +23,24 @@ public class FightManager : MonoBehaviour
         StartFight();
     }
 
-    public void StartFight()
+    public void StartFight()//enemy parametresi alacak, belki ally de alabilir
     {
-        //UI aç
+        gameObject.SetActive(true);
         //Karakterleri diz
+        //Düþmanlarý diz
         StartTour();
     }
+    public void LoseFight()
+    {
+
+    }
+    public void FinishFight()
+    {
+        //Ödül ver
+        gameObject.SetActive(false);
+    }
+
+
 
     public void StartTour()
     {
@@ -45,7 +56,11 @@ public class FightManager : MonoBehaviour
             item.ClearLunge();
         }
     }
-    public void CheckNextCharacter()//daha düzgün fonksiyonla
+    private void SortWithSpeed()
+    {
+        Array.Sort(CharactersSortedWithSpeed, (a, b) => b.speed.CompareTo(a.speed));
+    }
+    public void CheckNextCharacter()
     {
         if (characterOrder == Characters.Length)
         {
@@ -65,10 +80,7 @@ public class FightManager : MonoBehaviour
         Characters[characterOrder - 1].Play();
     }
 
-    private void SortWithSpeed()
-    {
-        Array.Sort(CharactersSortedWithSpeed, (a, b) => b.speed.CompareTo(a.speed));
-    }
+
 
     private IEnumerator Play()
     {
