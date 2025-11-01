@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class FightManager : MonoBehaviour
 {
@@ -11,32 +13,35 @@ public class FightManager : MonoBehaviour
         instance = this;
     }
 
-    [SerializeField] private CharacterBase[] Characters;
-    private CharacterBase[] CharactersSortedWithSpeed = new CharacterBase[] { };
+    [SerializeField] private CharacterBase[] Characters = new CharacterBase[] { };//serializefield gidecek
     public int characterOrder;
 
     public Animator animator;
 
-    private void Start()
-    {
-        CharactersSortedWithSpeed = Characters;
-        StartFight();
-    }
 
-    public void StartFight()//enemy parametresi alacak, belki ally de alabilir
+    public void StartFight(Enemy[] enemies)//enemy parametresi alacak, belki ally de alabilir
     {
         gameObject.SetActive(true);
         //Karakterleri diz
         //Düþmanlarý diz
+
+
+
+
+        Characters = enemies.Cast<CharacterBase>().Concat(MainCharacterMoveable.party.Cast<CharacterBase>()).ToArray();
+
+
+
+
         StartTour();
     }
     public void LoseFight()
     {
-
+        //ölüm ekraný* vs
     }
     public void FinishFight()
     {
-        //Ödül ver
+        //Ödül ver*
         gameObject.SetActive(false);
     }
 
@@ -58,7 +63,7 @@ public class FightManager : MonoBehaviour
     }
     private void SortWithSpeed()
     {
-        Array.Sort(CharactersSortedWithSpeed, (a, b) => b.speed.CompareTo(a.speed));
+        Array.Sort(Characters, (a, b) => b.speed.CompareTo(a.speed));
     }
     public void CheckNextCharacter()
     {
@@ -85,7 +90,7 @@ public class FightManager : MonoBehaviour
     private IEnumerator Play()
     {
         Debug.Log("Oynat");
-        foreach (CharacterBase item in CharactersSortedWithSpeed)
+        foreach (CharacterBase item in Characters)
         {
             item.Lunge.Invoke();
             yield return new WaitForSeconds(1);

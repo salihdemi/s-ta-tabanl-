@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyMoveable : MapMoveable
 {
+    [SerializeField] private Enemy[] enemies;
     protected override void CheckStop()
     {
 
@@ -16,7 +17,7 @@ public class EnemyMoveable : MapMoveable
     {
         if (collision.gameObject.TryGetComponent<MapMoveable>(out MapMoveable character))
         {
-            FightManager.instance.StartFight();
+            FightManager.instance.StartFight(enemies);
         }
     }
 }

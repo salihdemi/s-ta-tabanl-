@@ -3,7 +3,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class MainCharacterMoveable : MapMoveable
 {
-
+    [SerializeField] public static Ally[] party;
     protected override void Move()
     {
              if (Input.GetKey(KeyCode.W)) { y = +1; }
