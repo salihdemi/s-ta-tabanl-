@@ -12,7 +12,7 @@ public class FightManager : MonoBehaviour
     }
 
     [SerializeField] private CharacterBase[] Characters;
-    private CharacterBase[] CharactersSortedWithSpeed;
+    private CharacterBase[] CharactersSortedWithSpeed = new CharacterBase[] { };
     public int characterOrder;
 
     public Animator animator;
