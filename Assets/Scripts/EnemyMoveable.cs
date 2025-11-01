@@ -7,10 +7,9 @@ public class EnemyMoveable : MapMoveable
 
 
 
-    //public bool trigger;
+    private bool trigger;
     protected override void Move()
     {
-        /*
         float targetX = MainCharacterMoveable.instance.transform.position.x;
         float targetY = MainCharacterMoveable.instance.transform.position.y;
 
@@ -21,17 +20,26 @@ public class EnemyMoveable : MapMoveable
             //x uzaksa
             if (Mathf.Abs(currentX - targetX) >= Mathf.Abs(currentY - targetY))
             {
-                x = Mathf.Sign(currentX - targetX);
+                if (y < 0f) { transform.position = new Vector3(transform.position.x, Mathf.Floor(transform.position.y), 0f); }
+                else        { transform.position = new Vector3(transform.position.x, Mathf.Ceil (transform.position.y), 0f); }
+
+                y = 0;
+
+                x = Mathf.Sign(targetX - currentX);
             }
             //y uzaksa
             else
             {
-                y = Mathf.Sign(currentY - targetY);
+                if (y < 0f) { transform.position = new Vector3(Mathf.Floor(transform.position.x), transform.position.y, 0f); }
+                else        { transform.position = new Vector3(Mathf.Ceil (transform.position.x), transform.position.y, 0f); }
+
+                x = 0;
+
+                y = Mathf.Sign(targetY - currentY);
             }
 
             rb.linearVelocity = new Vector3(x * speed, y * speed, 0);
         }
-        */
     }
 
     protected override void CheckStop()
@@ -47,7 +55,6 @@ public class EnemyMoveable : MapMoveable
             FightManager.instance.StartFight(enemies);
         }
     }
-    /*
     //Tetikleniþ
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -63,5 +70,4 @@ public class EnemyMoveable : MapMoveable
             trigger = false;
         }
     }
-    */
 }

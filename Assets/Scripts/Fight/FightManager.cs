@@ -28,7 +28,7 @@ public class FightManager : MonoBehaviour
 
 
 
-        Characters = enemies.Cast<CharacterBase>().Concat(MainCharacterMoveable.party.Cast<CharacterBase>()).ToArray();
+        Characters = enemies.Cast<CharacterBase>().Concat(MainCharacterMoveable.instance.party.Cast<CharacterBase>()).ToArray();
 
 
 
