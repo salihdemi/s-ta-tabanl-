@@ -3,6 +3,17 @@ using static UnityEngine.GraphicsBuffer;
 
 public class MainCharacterMoveable : MapMoveable
 {
+    /*
+    public static MainCharacterMoveable instance;
+    MainCharacterMoveable() 
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+    */
+
     [SerializeField] public static Ally[] party;
     protected override void Move()
     {
