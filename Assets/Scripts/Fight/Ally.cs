@@ -1,11 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
+[CreateAssetMenu(fileName = "Ally", menuName = "Scriptable Objects/Ally")]
 public class Ally : CharacterBase
 {
     public Skill attack;
 
-    public CharacterActionPanel characterActionPanel;
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private Image image;
 
     public override void SetLunge(Skill skill)
     {
@@ -19,13 +22,13 @@ public class Ally : CharacterBase
 
     public override void Play()
     {
-        characterActionPanel.gameObject.SetActive(true);
-        characterActionPanel.WriteThings(this);
+        CharacterActionPanel.instance.gameObject.SetActive(true);
+        CharacterActionPanel.instance.WriteThings(this);
     }
 
     public override void Over()
     {
-        characterActionPanel.gameObject.SetActive(false);
+        CharacterActionPanel.instance.gameObject.SetActive(false);
         FightManager.instance.CheckNextCharacter();
     }
 

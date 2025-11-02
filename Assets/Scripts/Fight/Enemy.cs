@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Enemy", menuName = "Scriptable Objects/Enemy")]
 public class Enemy : CharacterBase
 {
     public override void SetLunge(Skill skill)

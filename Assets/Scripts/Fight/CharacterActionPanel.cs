@@ -5,22 +5,7 @@ using UnityEngine.UI;
 
 public class CharacterActionPanel : MonoBehaviour
 {
-    /*
     public static CharacterActionPanel instance;
-    CharacterActionPanel()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Debug.LogWarning("Birden fazla CharacterActionPanel var");
-            Debug.Log(this);
-            Destroy(gameObject);
-        }
-    }
-    */
 
     private TextMeshProUGUI nameText;
     private Transform buttonsParent;
@@ -37,10 +22,24 @@ public class CharacterActionPanel : MonoBehaviour
 
     ///karaktere sýra gelir
     ///bütün paneller ona göre yazýlýr
-
+    private void CheckInstance()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("Birden fazla CharacterActionPanel var");
+            Debug.Log(this.name);
+            Destroy(gameObject);
+        }
+    }
 
     private void Awake()
     {
+        CheckInstance();
+
         FindFirstChilds();
         FindButtons();
         FindPanels();

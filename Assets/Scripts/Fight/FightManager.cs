@@ -19,7 +19,7 @@ public class FightManager : MonoBehaviour
     public Animator animator;
 
 
-    public void StartFight(Enemy[] enemies)//enemy parametresi alacak, belki ally de alabilir
+    public void StartFight(Enemy[] enemies)
     {
         gameObject.SetActive(true);
         //Karakterleri diz
@@ -49,20 +49,13 @@ public class FightManager : MonoBehaviour
 
     public void StartTour()
     {
-        ClearLunges();
         SortWithSpeed();
         characterOrder = 0;
         CheckNextCharacter();
     }
-    private void ClearLunges()
-    {
-        foreach (CharacterBase item in Characters)
-        {
-            item.ClearLunge();
-        }
-    }
     private void SortWithSpeed()
     {
+        Debug.Log(Characters);
         Array.Sort(Characters, (a, b) => b.speed.CompareTo(a.speed));
     }
     public void CheckNextCharacter()
@@ -93,6 +86,7 @@ public class FightManager : MonoBehaviour
         foreach (CharacterBase item in Characters)
         {
             item.Lunge.Invoke();
+            item.ClearLunge();
             yield return new WaitForSeconds(1);
         }
         StartTour();

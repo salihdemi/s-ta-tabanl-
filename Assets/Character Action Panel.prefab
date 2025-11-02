@@ -731,7 +731,7 @@ GameObject:
   - component: {fileID: 4010566934894550474}
   - component: {fileID: 6182300721754624795}
   - component: {fileID: 4225709904344471831}
-  - component: {fileID: 344427336432228356}
+  - component: {fileID: 8641234420180922308}
   m_Layer: 5
   m_Name: Character Action Panel
   m_TagString: Untagged
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &344427336432228356
+--- !u!114 &8641234420180922308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

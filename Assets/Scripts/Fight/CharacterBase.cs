@@ -5,15 +5,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public abstract class CharacterBase : MonoBehaviour
+public abstract class CharacterBase : ScriptableObject
 {
     public string _name;
     private float maxHealth;
     private float baseAttackPower;
     public float speed;
     private float currentHealth;
-
-    private Animator animator;
 
     [HideInInspector]
     public UnityEvent Lunge;
@@ -22,10 +20,6 @@ public abstract class CharacterBase : MonoBehaviour
     public List<Skill> skills = new List<Skill>();
 
 
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     public void ClearLunge()
     {
