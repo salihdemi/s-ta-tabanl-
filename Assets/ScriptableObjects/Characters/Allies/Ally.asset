@@ -19,5 +19,4 @@ MonoBehaviour:
       m_Calls: []
   skills: []
   attack: {fileID: 0}
-  sprite: {fileID: 0}
-  image: {fileID: 0}
+  _sprite: {fileID: 5731584507761909605, guid: f4ac01e0052f15e418b62663d5a94719, type: 3}

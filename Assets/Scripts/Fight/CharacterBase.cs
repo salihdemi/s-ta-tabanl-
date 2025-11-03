@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public abstract class CharacterBase : ScriptableObject
 {
+
+    //burada base deðerler olacak, iþlenmiþ deðerler scriptable objectin dýþýnda olmalý
     public string _name;
     private float maxHealth;
     private float baseAttackPower;

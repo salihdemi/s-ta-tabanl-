@@ -5,6 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy", menuName = "Scriptable Objects/Enemy")]
 public class Enemy : CharacterBase
 {
+
+
+
+    public Sprite _sprite;//inherit almak daha doðru olur ama denedim olmadý
+
+
     public override void SetLunge(Skill skill)
     {
 

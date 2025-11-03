@@ -7,8 +7,10 @@ public class Ally : CharacterBase
 {
     public Skill attack;
 
-    [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private Image image;
+
+    public Sprite _sprite;//inherit almak daha doðru olur ama denedim olmadý
+
+
 
     public override void SetLunge(Skill skill)
     {

@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 public class FightManager : MonoBehaviour
 {
@@ -13,22 +14,44 @@ public class FightManager : MonoBehaviour
         instance = this;
     }
 
-    [SerializeField] private CharacterBase[] Characters = new CharacterBase[] { };//serializefield gidecek
-    public int characterOrder;
+    private CharacterBase[] Characters = new CharacterBase[] { };
+    private int characterOrder;
 
-    public Animator animator;
+    //public Animator animator;
+
+
+    [SerializeField] private Image[] AllyProfiles;
+    [SerializeField] private Transform EnemyProfileParent;
+    [SerializeField] private Image EnemyProfile;
 
 
     public void StartFight(Enemy[] enemies)
     {
         gameObject.SetActive(true);
+
+
+
         //Karakterleri diz
+        for (int i = 0; i < MainCharacterMoveable.instance.party.Length; i++)
+        {
+            Ally ally = MainCharacterMoveable.instance.party[i];
+
+            if (ally == null) continue;
+
+            AllyProfiles[i].sprite = ally._sprite;
+        }
+
         //Düþmanlarý diz
+        foreach (Enemy enemy in enemies)
+        {
+            Image profile = Instantiate(EnemyProfile, EnemyProfileParent);
+            profile.sprite = enemy._sprite;
+        }
 
 
 
 
-        Characters = enemies.Cast<CharacterBase>().Concat(MainCharacterMoveable.instance.party.Cast<CharacterBase>()).ToArray();
+        Characters = enemies.Cast<CharacterBase>().Concat(MainCharacterMoveable.instance.party.Where(p => p != null).Cast<CharacterBase>()).ToArray();
 
 
 
