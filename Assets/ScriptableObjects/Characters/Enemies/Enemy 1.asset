@@ -18,3 +18,4 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   skills: []
+  _sprite: {fileID: 4644523113532460279, guid: 6f35c0078eb4f974185c4a13688d6478, type: 3}
