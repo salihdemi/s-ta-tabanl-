@@ -17,7 +17,7 @@ public class Ally : CharacterBase
         //secili saldýrýyý iþaretle
         Lunge.AddListener(() => skill.Method(this));
 
-        //Karakter animasyonu oynat
+        //Karakter animasyonu oynatmayý da abone et
 
         Over();
     }

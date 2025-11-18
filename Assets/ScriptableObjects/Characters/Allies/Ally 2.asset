@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb0bbf49a2eeb047aaefae706629837, type: 3}
   m_Name: Ally 2
   m_EditorClassIdentifier: Assembly-CSharp::Ally
-  _name: z
+  _name: Viking
   speed: 3
   Lunge:
     m_PersistentCalls:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb0bbf49a2eeb047aaefae706629837, type: 3}
   m_Name: Ally 3
   m_EditorClassIdentifier: Assembly-CSharp::Ally
-  _name: t
+  _name: "B\xFCy\xFCc\xFC"
   speed: 4
   Lunge:
     m_PersistentCalls:

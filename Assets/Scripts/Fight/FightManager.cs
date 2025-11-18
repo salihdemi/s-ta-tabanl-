@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class FightManager : MonoBehaviour
@@ -15,6 +14,7 @@ public class FightManager : MonoBehaviour
     }
 
     private CharacterBase[] Characters = new CharacterBase[] { };
+    private Enemy[] Enemies = new Enemy[] { };
     private int characterOrder;
 
     //public Animator animator;
@@ -23,6 +23,8 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Image[] AllyProfiles;
     [SerializeField] private Transform EnemyProfileParent;
     [SerializeField] private Image EnemyProfile;
+    [SerializeField] private Image EnemyProfilePrefab;
+    private List<Image> EnemyProfiles = new List<Image>();
 
 
     public void StartFight(Enemy[] enemies)
@@ -30,7 +32,7 @@ public class FightManager : MonoBehaviour
         gameObject.SetActive(true);
 
 
-
+        Enemies = enemies;
         //Karakterleri diz
         for (int i = 0; i < MainCharacterMoveable.instance.party.Length; i++)
         {
@@ -42,9 +44,10 @@ public class FightManager : MonoBehaviour
         }
 
         //Düþmanlarý diz
-        foreach (Enemy enemy in enemies)
+        foreach (Enemy enemy in Enemies)
         {
-            Image profile = Instantiate(EnemyProfile, EnemyProfileParent);
+            Image profile = Instantiate(EnemyProfilePrefab, EnemyProfileParent);
+            EnemyProfiles.Add(profile);
             profile.sprite = enemy._sprite;
         }
 
@@ -65,6 +68,9 @@ public class FightManager : MonoBehaviour
     public void FinishFight()
     {
         //Ödül ver*
+        Characters = new CharacterBase[] { };
+        ClearEnemies();
+
         gameObject.SetActive(false);
     }
 
@@ -78,7 +84,6 @@ public class FightManager : MonoBehaviour
     }
     private void SortWithSpeed()
     {
-        Debug.Log(Characters);
         Array.Sort(Characters, (a, b) => b.speed.CompareTo(a.speed));
     }
     public void CheckNextCharacter()
@@ -97,10 +102,18 @@ public class FightManager : MonoBehaviour
     }
     private void LetNextPlayertoPlay()
     {
-        Debug.Log(Characters[characterOrder - 1] + " hamlesini seçiyor");
+        Debug.Log(Characters[characterOrder - 1]._name + " hamlesini seçiyor");
         Characters[characterOrder - 1].Play();
     }
-
+    private void ClearEnemies()
+    {
+        for (int i = 0; i < Enemies.Length; i++)
+        {
+            Destroy(EnemyProfiles[i].gameObject);
+        }
+        EnemyProfiles.Clear();
+        Enemies = new Enemy[] {};
+    }
 
 
     private IEnumerator Play()
