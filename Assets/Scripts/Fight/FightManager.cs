@@ -19,10 +19,11 @@ public class FightManager : MonoBehaviour
 
     //public Animator animator;
 
+    [SerializeField] private Image ProfilePrefab;
 
-    [SerializeField] private Image[] AllyProfiles;
+    [SerializeField] private Transform AllyProfileParent;
     [SerializeField] private Transform EnemyProfileParent;
-    [SerializeField] private Image EnemyProfilePrefab;
+    private List<Image>  AllyProfiles = new List<Image>();
     private List<Image> EnemyProfiles = new List<Image>();
 
 
@@ -40,23 +41,20 @@ public class FightManager : MonoBehaviour
         }
 
 
-
         gameObject.SetActive(true);
 
-        //Karakterleri diz
-        for (int i = 0; i < MainCharacterMoveable.instance.party.Length; i++)
+        //Dostlarý diz
+        foreach (Ally ally in MainCharacterMoveable.instance.party)
         {
-            Ally ally = MainCharacterMoveable.instance.party[i];
-
-            if (ally == null) continue;
-
-            AllyProfiles[i].sprite = ally._sprite;//olan image a yazma deðil de image spawn etme olabilir, kare boþ kalabiliyor.*
+            Image profile = Instantiate(ProfilePrefab, AllyProfileParent);
+            AllyProfiles.Add(profile);
+            profile.sprite = ally._sprite;
         }
 
         //Düþmanlarý diz
         foreach (Enemy enemy in enemies)
         {
-            Image profile = Instantiate(EnemyProfilePrefab, EnemyProfileParent);
+            Image profile = Instantiate(ProfilePrefab, EnemyProfileParent);
             EnemyProfiles.Add(profile);
             profile.sprite = enemy._sprite;
         }
@@ -79,7 +77,7 @@ public class FightManager : MonoBehaviour
     {
         //Ödül ver*
         Characters = new CharacterBase[] { };
-        //ClearCharacters();
+        ClearCharacters();
 
         gameObject.SetActive(false);
     }
@@ -117,10 +115,14 @@ public class FightManager : MonoBehaviour
     }
     private void ClearCharacters()
     {
-        for (int i = 0; i < Characters.Length; i++)
-        {
-            Destroy(EnemyProfiles[i].gameObject);
-        }
+        Debug.Log(AllyProfiles);
+        for (int i = 0; i < AllyProfiles.Count; i++)
+        { Destroy(AllyProfiles[i].gameObject); }
+        AllyProfiles.Clear();
+
+            
+        for (int i = 0; i < EnemyProfiles.Count; i++)
+        { Destroy(EnemyProfiles[i].gameObject); }
         EnemyProfiles.Clear();
     }
 
