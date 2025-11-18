@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class FightManager : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class FightManager : MonoBehaviour
     }
 
     private CharacterBase[] Characters = new CharacterBase[] { };
-    private Enemy[] Enemies = new Enemy[] { };
     private int characterOrder;
 
     //public Animator animator;
@@ -22,17 +22,27 @@ public class FightManager : MonoBehaviour
 
     [SerializeField] private Image[] AllyProfiles;
     [SerializeField] private Transform EnemyProfileParent;
-    [SerializeField] private Image EnemyProfile;
     [SerializeField] private Image EnemyProfilePrefab;
     private List<Image> EnemyProfiles = new List<Image>();
 
 
     public void StartFight(Enemy[] enemies)
     {
+        if(MainCharacterMoveable.instance.party.Length < 1)
+        {
+            Debug.LogError("Parti boþ");
+            return;
+        }
+        if (enemies.Length < 1)
+        {
+            Debug.LogError("Düþman partisi boþ");
+            return;
+        }
+
+
+
         gameObject.SetActive(true);
 
-
-        Enemies = enemies;
         //Karakterleri diz
         for (int i = 0; i < MainCharacterMoveable.instance.party.Length; i++)
         {
@@ -40,11 +50,11 @@ public class FightManager : MonoBehaviour
 
             if (ally == null) continue;
 
-            AllyProfiles[i].sprite = ally._sprite;
+            AllyProfiles[i].sprite = ally._sprite;//olan image a yazma deðil de image spawn etme olabilir, kare boþ kalabiliyor.*
         }
 
         //Düþmanlarý diz
-        foreach (Enemy enemy in Enemies)
+        foreach (Enemy enemy in enemies)
         {
             Image profile = Instantiate(EnemyProfilePrefab, EnemyProfileParent);
             EnemyProfiles.Add(profile);
@@ -69,7 +79,7 @@ public class FightManager : MonoBehaviour
     {
         //Ödül ver*
         Characters = new CharacterBase[] { };
-        ClearEnemies();
+        //ClearCharacters();
 
         gameObject.SetActive(false);
     }
@@ -105,14 +115,13 @@ public class FightManager : MonoBehaviour
         Debug.Log(Characters[characterOrder - 1]._name + " hamlesini seçiyor");
         Characters[characterOrder - 1].Play();
     }
-    private void ClearEnemies()
+    private void ClearCharacters()
     {
-        for (int i = 0; i < Enemies.Length; i++)
+        for (int i = 0; i < Characters.Length; i++)
         {
             Destroy(EnemyProfiles[i].gameObject);
         }
         EnemyProfiles.Clear();
-        Enemies = new Enemy[] {};
     }
 
 
@@ -127,6 +136,5 @@ public class FightManager : MonoBehaviour
         }
         StartTour();
     }
-
 
 }

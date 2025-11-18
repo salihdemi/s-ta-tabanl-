@@ -31,7 +31,7 @@ public class Ally : CharacterBase
     public override void Over()
     {
         CharacterActionPanel.instance.gameObject.SetActive(false);
-        FightManager.instance.CheckNextCharacter();
+        //FightManager.instance.CheckNextCharacter();
     }
 
 
