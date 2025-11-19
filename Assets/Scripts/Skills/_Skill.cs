@@ -7,9 +7,8 @@ using UnityEngine.UI;
 
 public abstract class _Skill : ScriptableObject
 {
-    //[SerializeField]
     //private AnimationClip clip;
-    //public Button x;
+    //private AudioClip clip;
 
 
     public abstract void Method(CharacterBase user);

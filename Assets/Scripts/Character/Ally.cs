@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-[CreateAssetMenu(fileName = "Ally", menuName = "Scriptable Objects/Ally")]
+[CreateAssetMenu(fileName = "Ally", menuName = "Scriptable Objects/Characters/Ally")]
 public class Ally : CharacterBase
 {
     public _Skill attack;

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Skill1", menuName = "Scriptable Objects/Skill1")]
-public class Skill1 : _Skill
+[CreateAssetMenu(fileName = "Burst", menuName = "Scriptable Objects/Skills/Burst")]
+public class Burst : _Skill
 {
     public override void Method(CharacterBase user)
     {
