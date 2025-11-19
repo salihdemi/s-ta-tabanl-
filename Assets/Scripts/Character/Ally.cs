@@ -12,15 +12,6 @@ public class Ally : CharacterBase
 
 
 
-    public override void SetLunge(_Skill skill)
-    {
-        //secili saldýrýyý iþaretle
-        Lunge.AddListener(() => skill.Method(this));
-
-        //Karakter animasyonu oynatmayý da abone et
-
-        Over();
-    }
 
     public override void Play()
     {

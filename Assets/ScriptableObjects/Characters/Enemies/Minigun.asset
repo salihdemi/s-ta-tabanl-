@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24a90bbf33992847903027ea7b22891, type: 3}
-  m_Name: Enemy 2
+  m_Name: Minigun
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _name: c
+  _name: Minigun
   speed: 6
   Lunge:
     m_PersistentCalls:
       m_Calls: []
-  skills: []
-  _sprite: {fileID: 4644523113532460279, guid: 6f35c0078eb4f974185c4a13688d6478, type: 3}
+  skills:
+  - {fileID: 11400000, guid: 4e2e20dbe6d7bb44cabbb4441bd14e5a, type: 2}
+  _sprite: {fileID: 4246200125604500827, guid: 64d58308f89e8de40b24e6f1b6c8aea4, type: 3}

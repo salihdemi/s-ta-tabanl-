@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24a90bbf33992847903027ea7b22891, type: 3}
-  m_Name: Enemy
+  m_Name: Monster
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _name: a
+  _name: Monster
   speed: 8
   Lunge:
     m_PersistentCalls:
       m_Calls: []
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: da1014413da27ab4c8304b5d5df75006, type: 2}
   _sprite: {fileID: 4644523113532460279, guid: 6f35c0078eb4f974185c4a13688d6478, type: 3}

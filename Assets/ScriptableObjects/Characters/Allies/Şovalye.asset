@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eb0bbf49a2eeb047aaefae706629837, type: 3}
-  m_Name: Ally
+  m_Name: "\u015Eovalye"
   m_EditorClassIdentifier: Assembly-CSharp::Ally
-  _name: "Ok\xE7u"
-  speed: 1
+  _name: "\u015Eovalye"
+  speed: 2
   Lunge:
     m_PersistentCalls:
       m_Calls: []
   skills:
   - {fileID: 11400000, guid: 9d1e90c9bfde37e4b97d4456b48556bb, type: 2}
   attack: {fileID: 11400000, guid: 9d1e90c9bfde37e4b97d4456b48556bb, type: 2}
-  _sprite: {fileID: 5731584507761909605, guid: f4ac01e0052f15e418b62663d5a94719, type: 3}
+  _sprite: {fileID: 4495478712733764576, guid: 838545d8300eb52449d69b1a1ac126d3, type: 3}

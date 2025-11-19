@@ -7,11 +7,12 @@ public abstract class CharacterBase : ScriptableObject
 {
 
     //burada base deðerler olacak, iþlenmiþ deðerler scriptable objectin dýþýnda olmalý
-    public string _name;
-    private float maxHealth;
-    private float baseAttackPower;
-    public float speed;
-    private float currentHealth;
+    public float maxHealth;
+    public float health;
+    public float baseAttackPower;
+    public float currentAttackPower;
+    public float baseSpeed;
+    public float currentSpeed;
 
     [HideInInspector]
     public UnityEvent Lunge;
@@ -31,7 +32,25 @@ public abstract class CharacterBase : ScriptableObject
 
     public abstract void  Play();
     public abstract void Over();
-    public abstract void SetLunge(_Skill skill);
+    public  void SetLunge(_Skill skill)
+    {
+        //secili saldýrýyý iþaretle
+        Lunge.AddListener(() => skill.Method(this, null));//!
+
+        Over();
+    }
+
+
+    public void GetDamage(float damage)
+    {
+        health -= damage;
+        if(health < 0)
+        {
+            health = 0;
+            //öl
+            //herkes öldü mü diye kontrol et
+        }
+    }
 
     
 }

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eb0bbf49a2eeb047aaefae706629837, type: 3}
-  m_Name: Ally 2
+  m_Name: "B\xFCy\xFCc\xFC"
   m_EditorClassIdentifier: Assembly-CSharp::Ally
-  _name: Viking
-  speed: 3
+  _name: "B\xFCy\xFCc\xFC"
+  speed: 4
   Lunge:
     m_PersistentCalls:
       m_Calls: []
   skills:
   - {fileID: 11400000, guid: 9d1e90c9bfde37e4b97d4456b48556bb, type: 2}
   attack: {fileID: 11400000, guid: 9d1e90c9bfde37e4b97d4456b48556bb, type: 2}
-  _sprite: {fileID: -7684046354676129167, guid: eeaaaef878a00154b828322d35a8faa7, type: 3}
+  _sprite: {fileID: 3422849895820167655, guid: 350468460324d7f4ea9703444d789cf2, type: 3}

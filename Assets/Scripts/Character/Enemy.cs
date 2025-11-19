@@ -11,16 +11,13 @@ public class Enemy : CharacterBase
     public Sprite _sprite;//inherit almak daha doðru olur ama denedim olmadý
 
 
-    public override void SetLunge(_Skill skill)
-    {
-
-    }
 
     public override void Play()
     {
         //Random hamle ver
+        _Skill currentskill = skills[Random.Range(0, skills.Count - 1)];
         //SetLunge
-        Over();
+        SetLunge(currentskill);
     }
 
     public override void Over()

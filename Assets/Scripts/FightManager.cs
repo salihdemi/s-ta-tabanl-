@@ -15,6 +15,9 @@ public class FightManager : MonoBehaviour
     }
 
     private CharacterBase[] Characters = new CharacterBase[] { };
+    public Ally[] Allies = new Ally[] { };
+    public Enemy[] Enemies = new Enemy[] { };
+
     private int characterOrder;
 
     //public Animator animator;
@@ -43,8 +46,10 @@ public class FightManager : MonoBehaviour
 
         gameObject.SetActive(true);
 
+
         //Dostlarý diz
-        foreach (Ally ally in MainCharacterMoveable.instance.party)
+        Allies = MainCharacterMoveable.instance.party;
+        foreach (Ally ally in Allies)
         {
             Image profile = Instantiate(ProfilePrefab, AllyProfileParent);
             AllyProfiles.Add(profile);
@@ -52,7 +57,8 @@ public class FightManager : MonoBehaviour
         }
 
         //Düþmanlarý diz
-        foreach (Enemy enemy in enemies)
+        Enemies = enemies;
+        foreach (Enemy enemy in Enemies)
         {
             Image profile = Instantiate(ProfilePrefab, EnemyProfileParent);
             EnemyProfiles.Add(profile);
@@ -62,7 +68,7 @@ public class FightManager : MonoBehaviour
 
 
 
-        Characters = enemies.Cast<CharacterBase>().Concat(MainCharacterMoveable.instance.party.Where(p => p != null).Cast<CharacterBase>()).ToArray();
+        Characters = Enemies.Cast<CharacterBase>().Concat(Allies.Where(p => p != null).Cast<CharacterBase>()).ToArray();
 
 
 
@@ -92,7 +98,7 @@ public class FightManager : MonoBehaviour
     }
     private void SortWithSpeed()
     {
-        Array.Sort(Characters, (a, b) => b.speed.CompareTo(a.speed));
+        Array.Sort(Characters, (a, b) => b.currentSpeed.CompareTo(a.currentSpeed));
     }
     public void CheckNextCharacter()
     {
@@ -110,7 +116,7 @@ public class FightManager : MonoBehaviour
     }
     private void LetNextPlayertoPlay()
     {
-        Debug.Log(Characters[characterOrder - 1]._name + " hamlesini seçiyor");
+        Debug.Log(Characters[characterOrder - 1].name + " hamlesini seçiyor");
         Characters[characterOrder - 1].Play();
     }
     private void ClearCharacters()

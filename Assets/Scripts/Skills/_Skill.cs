@@ -11,7 +11,7 @@ public abstract class _Skill : ScriptableObject
     //private AudioClip clip;
 
 
-    public abstract void Method(CharacterBase user);
+    public abstract void Method(CharacterBase user, CharacterBase target);
 
     public void AddButton(Ally character, GameObject skillsPanel)
     {
