@@ -5,14 +5,14 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Ally", menuName = "Scriptable Objects/Ally")]
 public class Ally : CharacterBase
 {
-    public Skill attack;
+    public _Skill attack;
 
 
-    public Sprite _sprite;//inherit almak daha doðru olur ama denedim olmadý
+    public Sprite _sprite;//inherit almak daha doðru olur ama denedim olmadý!
 
 
 
-    public override void SetLunge(Skill skill)
+    public override void SetLunge(_Skill skill)
     {
         //secili saldýrýyý iþaretle
         Lunge.AddListener(() => skill.Method(this));
@@ -24,19 +24,23 @@ public class Ally : CharacterBase
 
     public override void Play()
     {
-        CharacterActionPanel.instance.gameObject.SetActive(true);
         CharacterActionPanel.instance.WriteThings(this);
+
+        CharacterActionPanel.instance.gameObject.SetActive(true);
     }
 
     public override void Over()
     {
         CharacterActionPanel.instance.gameObject.SetActive(false);
-        //FightManager.instance.CheckNextCharacter();
+        CharacterActionPanel.instance.DisableAllPanels();
+
+        //button.onClick.AddListener(() => skillsPanel.SetActive(false));
+        FightManager.instance.CheckNextCharacter();
     }
 
 
 
-    public void LearnSkill(Skill skill)
+    public void LearnSkill(_Skill skill)
     {
         Debug.Log(skill.ToString());
         if(skills.Contains(skill))

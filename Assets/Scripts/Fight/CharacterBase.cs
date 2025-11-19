@@ -17,7 +17,7 @@ public abstract class CharacterBase : ScriptableObject
     public UnityEvent Lunge;
 
 
-    public List<Skill> skills = new List<Skill>();
+    public List<_Skill> skills = new List<_Skill>();
 
 
 
@@ -31,7 +31,7 @@ public abstract class CharacterBase : ScriptableObject
 
     public abstract void  Play();
     public abstract void Over();
-    public abstract void SetLunge(Skill skill);
+    public abstract void SetLunge(_Skill skill);
 
     
 }

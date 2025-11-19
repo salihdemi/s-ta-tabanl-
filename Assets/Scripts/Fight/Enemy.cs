@@ -11,7 +11,7 @@ public class Enemy : CharacterBase
     public Sprite _sprite;//inherit almak daha doðru olur ama denedim olmadý
 
 
-    public override void SetLunge(Skill skill)
+    public override void SetLunge(_Skill skill)
     {
 
     }
@@ -25,6 +25,6 @@ public class Enemy : CharacterBase
 
     public override void Over()
     {
-        //FightManager.instance.CheckNextCharacter();
+        FightManager.instance.CheckNextCharacter();
     }
 }

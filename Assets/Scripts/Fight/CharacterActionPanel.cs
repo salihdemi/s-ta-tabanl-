@@ -100,6 +100,7 @@ public class CharacterActionPanel : MonoBehaviour
     }
     private void WriteAttack(Ally character)
     {
+        attackButton.onClick.RemoveAllListeners();
         attackButton.onClick.AddListener(() => character.SetLunge(character.attack));
     }
     private void WriteSkillsPanel(Ally character)
@@ -109,9 +110,8 @@ public class CharacterActionPanel : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (Skill skill in character.skills)
+        foreach (_Skill skill in character.skills)
         {
-            Debug.Log(skill.name+" butonu eklendi");
             skill.AddButton(character, skillsPanel);
         }
     }

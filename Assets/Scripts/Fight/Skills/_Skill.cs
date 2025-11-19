@@ -5,33 +5,20 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Skill", menuName = "Scriptable Objects/Skill")]
-public class Skill : ScriptableObject
+public abstract class _Skill : ScriptableObject
 {
     //[SerializeField]
     //private AnimationClip clip;
     //public Button x;
-    Skill()
-    { 
 
-    }
-    public void Method(CharacterBase user)
-    {
-        Debug.Log(user.name + " " + name);
 
-        //FightManager.instance.animator.Play("New Animation");
-        //animasyonu oynat
-        //animator.SetBool("IsAttacking", true);
-
-        //saldýrýyý yap
-        //Debug.Log(name + " " + baseAttackPower + " " + "hasar vurdu");
-    }
+    public abstract void Method(CharacterBase user);
 
     public void AddButton(Ally character, GameObject skillsPanel)
     {
         //Buton
         GameObject newSkillButton = new GameObject(name + "_Button");
-        newSkillButton.transform.parent = skillsPanel.transform.GetChild(0);
+        newSkillButton.transform.parent = skillsPanel.transform.GetChild(0);//parent
         newSkillButton.AddComponent<CanvasRenderer>();
         newSkillButton.AddComponent<Image>();
         Button button = newSkillButton.AddComponent<Button>();
@@ -45,8 +32,8 @@ public class Skill : ScriptableObject
         text.color = Color.black;
         //text.fontSize = 12;
 
+
         //Buton event
         button.onClick.AddListener(() => character.SetLunge(this));
-        button.onClick.AddListener(() => skillsPanel.SetActive(false));
     }
 }
