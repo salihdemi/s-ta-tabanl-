@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc72fbb60a00a44e810fc1998b8a31d, type: 3}
   m_Name: ChargedAttack
   m_EditorClassIdentifier: Assembly-CSharp::ChargedAttack
+  isToEnemy: 1

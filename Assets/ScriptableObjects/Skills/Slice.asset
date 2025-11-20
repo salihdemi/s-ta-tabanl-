@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38cae77c23ad024a93e7c4267c2809a, type: 3}
   m_Name: Slice
   m_EditorClassIdentifier: Assembly-CSharp::Slice
+  isToEnemy: 1
