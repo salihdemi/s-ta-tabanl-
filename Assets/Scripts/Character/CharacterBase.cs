@@ -15,19 +15,21 @@ public abstract class CharacterBase : ScriptableObject
     public float baseSpeed;
     public float currentSpeed;
 
-    [HideInInspector]
-    public Action<CharacterBase, CharacterBase> Lunge;
+    [HideInInspector] public Action<CharacterBase, CharacterBase> Lunge;
+    [HideInInspector] public CharacterBase Target;
 
-    public CharacterBase target;
+
 
     public List<_Skill> skills = new List<_Skill>();
 
 
+    //public List<CharacterBase> team;
+    //public List<CharacterBase> enemyTeam;
 
     public void ClearLungeAndTarget()
     {
         Lunge = null;
-        target = null;
+        Target = null;
     }
 
 
@@ -36,7 +38,7 @@ public abstract class CharacterBase : ScriptableObject
     public abstract void  Play();
     public abstract void Over();
     public abstract void SetLunge(_Skill skill);
-
+    public abstract void PickTarget(_Skill skill);
 
     public void GetDamage(float damage)
     {

@@ -22,52 +22,54 @@ public class FightManager : MonoBehaviour
 
     //public Animator animator;
 
-    [SerializeField] private Image ProfilePrefab;
+    [SerializeField] private Profile ProfilePrefab;
     [SerializeField] private Transform AllyProfileParent;
     [SerializeField] private Transform EnemyProfileParent;
-    private List<Image>  AllyProfiles = new List<Image>();
-    private List<Image> EnemyProfiles = new List<Image>();
+    public List<Profile>  AllyProfiles = new List<Profile>();
+    public List<Profile> EnemyProfiles = new List<Profile>();
 
 
-    public void StartFight(Enemy[] enemies)
+    public void StartFight(Enemy[] enemies)//Fonksiyonla!
     {
         if(MainCharacterMoveable.instance.party.Length < 1)
-        {
-            Debug.LogError("Parti boþ");
-            return;
-        }
+        {Debug.LogError("Parti boþ");return; }
         if (enemies.Length < 1)
-        {
-            Debug.LogError("Düþman partisi boþ");
-            return;
-        }
+        {Debug.LogError("Düþman partisi boþ");return; }
 
 
         gameObject.SetActive(true);
+
+
 
 
         //Dostlarý diz
         Allies = MainCharacterMoveable.instance.party;
         foreach (Ally ally in Allies)
         {
-            Image profile = Instantiate(ProfilePrefab, AllyProfileParent);
+            Profile profile = Instantiate(ProfilePrefab, AllyProfileParent);
+            Image profileImage = profile.GetComponent<Image>();
             AllyProfiles.Add(profile);
-            profile.sprite = ally._sprite;
+            profile.character = ally;
+            ally.profile = profile;
+            profileImage.sprite = ally._sprite;
         }
+
 
         //Düþmanlarý diz
         Enemies = enemies;
         foreach (Enemy enemy in Enemies)
         {
-            Image profileImage = Instantiate(ProfilePrefab, EnemyProfileParent);
-            EnemyProfiles.Add(profileImage);
-            profileImage.sprite = enemy._sprite;
 
-
-            Profile profile = profileImage.GetComponent<Profile>();
+            Profile profile = Instantiate(ProfilePrefab, EnemyProfileParent);
+            Image profileImage = profile.GetComponent<Image>();
+            EnemyProfiles.Add(profile);
             profile.character = enemy;
             enemy.profile = profile;
+            profileImage.sprite = enemy._sprite;
         }
+
+
+
 
 
 
@@ -142,7 +144,7 @@ public class FightManager : MonoBehaviour
         Debug.Log("Oynat");
         foreach (CharacterBase item in Characters)
         {
-            item.Lunge(item, item.target);
+            item.Lunge(item, item.Target);
             item.ClearLungeAndTarget();
             yield return new WaitForSeconds(1);
         }

@@ -10,6 +10,7 @@ public abstract class _Skill : ScriptableObject
     //private AnimationClip clip;
     //private AudioClip clip;
 
+    public bool isToEnemy;
     public abstract void Method(CharacterBase user, CharacterBase target);
 
     public void AddButton(Ally character, GameObject skillsPanel)

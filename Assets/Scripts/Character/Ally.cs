@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,18 +8,50 @@ public class Ally : CharacterBase
 {
     public _Skill attack;
 
-
     public Sprite _sprite;//inherit almak daha doðru olur ama denedim olmadý!
+
+    public Profile profile;
+
+
+
+
+
 
     public override void SetLunge(_Skill skill)
     {
         //secili saldýrýyý iþaretle
-        //Lunge.AddListener(() => skill.Method(this, null));//!
         Lunge = skill.Method;
+
+        CharacterActionPanel.instance.DisableAllPanels();
+
+        //hedef seçecek
+        PickTarget(skill);
+    }
+    public override void PickTarget(_Skill skill)
+    {
+        if (skill.isToEnemy)
+        {
+            foreach(Profile profile in FightManager.instance.EnemyProfiles)
+            {
+                profile.button.interactable = true;
+                profile.button.onClick.AddListener(() => PickThisAsTarget(profile));
+            }
+        }
+        else
+        {
+            foreach (Profile profile in FightManager.instance.AllyProfiles)
+            {
+                profile.button.interactable = true;
+                profile.button.onClick.AddListener(() => PickThisAsTarget(profile));
+            }
+        }
+    }
+    public void PickThisAsTarget(Profile profile)
+    {
+        Target = profile.character;
 
         Over();
     }
-
     public override void Play()
     {
         CharacterActionPanel.instance.WriteThings(this);
@@ -28,10 +61,20 @@ public class Ally : CharacterBase
 
     public override void Over()
     {
-        CharacterActionPanel.instance.gameObject.SetActive(false);
-        CharacterActionPanel.instance.DisableAllPanels();
+        foreach (Profile profile in FightManager.instance.EnemyProfiles)
+        {
+            profile.button.interactable = false;
+            profile.button.onClick.RemoveAllListeners();
+        }
 
-        //button.onClick.AddListener(() => skillsPanel.SetActive(false));
+        foreach (Profile profile in FightManager.instance.AllyProfiles)
+        {
+            profile.button.interactable = false;
+            profile.button.onClick.RemoveAllListeners();
+        }
+
+        CharacterActionPanel.instance.gameObject.SetActive(false);
+
         FightManager.instance.CheckNextCharacter();
     }
 

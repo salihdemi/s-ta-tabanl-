@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Profile : MonoBehaviour
 {
     public Button button;
-    public CharacterBase character;
+    [HideInInspector] public CharacterBase character;
 
     private void Awake()
     {

@@ -15,8 +15,15 @@ public class Enemy : CharacterBase
     public override void SetLunge(_Skill skill)
     {
         //secili saldýrýyý iþaretle
-        //Lunge.AddListener(() => skill.Method(this, null));//!
         Lunge = skill.Method;
+
+        PickTarget(skill);
+    }
+
+    public override void PickTarget(_Skill skill)
+    {
+
+        Target = MainCharacterMoveable.instance.party[0];//default hedef!
 
         Over();
     }
