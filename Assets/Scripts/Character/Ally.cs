@@ -13,7 +13,8 @@ public class Ally : CharacterBase
     public override void SetLunge(_Skill skill)
     {
         //secili saldýrýyý iþaretle
-        Lunge.AddListener(() => skill.Method(this, null));//!
+        //Lunge.AddListener(() => skill.Method(this, null));//!
+        Lunge = skill.Method;
 
         Over();
     }

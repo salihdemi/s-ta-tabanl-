@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,16 +16,18 @@ public abstract class CharacterBase : ScriptableObject
     public float currentSpeed;
 
     [HideInInspector]
-    public UnityEvent Lunge;
+    public Action<CharacterBase, CharacterBase> Lunge;
 
+    public CharacterBase target;
 
     public List<_Skill> skills = new List<_Skill>();
 
 
 
-    public void ClearLunge()
+    public void ClearLungeAndTarget()
     {
-        Lunge.RemoveAllListeners();
+        Lunge = null;
+        target = null;
     }
 
 

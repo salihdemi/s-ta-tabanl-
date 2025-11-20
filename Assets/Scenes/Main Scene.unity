@@ -242,8 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Allies: []
   Enemies: []
-  AllyProfilePrefab: {fileID: 0}
-  EnemyProfilePrefab: {fileID: 0}
+  ProfilePrefab: {fileID: 5027435730248344302, guid: 857798f39e9c69448832bf6dad7e072f, type: 3}
   AllyProfileParent: {fileID: 1024666692}
   EnemyProfileParent: {fileID: 567234374}
 --- !u!224 &555662458

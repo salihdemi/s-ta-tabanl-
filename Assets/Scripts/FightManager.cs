@@ -22,8 +22,7 @@ public class FightManager : MonoBehaviour
 
     //public Animator animator;
 
-    [SerializeField] private Image AllyProfilePrefab;
-    [SerializeField] private Image EnemyProfilePrefab;
+    [SerializeField] private Image ProfilePrefab;
     [SerializeField] private Transform AllyProfileParent;
     [SerializeField] private Transform EnemyProfileParent;
     private List<Image>  AllyProfiles = new List<Image>();
@@ -51,7 +50,7 @@ public class FightManager : MonoBehaviour
         Allies = MainCharacterMoveable.instance.party;
         foreach (Ally ally in Allies)
         {
-            Image profile = Instantiate(AllyProfilePrefab, AllyProfileParent);
+            Image profile = Instantiate(ProfilePrefab, AllyProfileParent);
             AllyProfiles.Add(profile);
             profile.sprite = ally._sprite;
         }
@@ -60,7 +59,7 @@ public class FightManager : MonoBehaviour
         Enemies = enemies;
         foreach (Enemy enemy in Enemies)
         {
-            Image profileImage = Instantiate(EnemyProfilePrefab, EnemyProfileParent);
+            Image profileImage = Instantiate(ProfilePrefab, EnemyProfileParent);
             EnemyProfiles.Add(profileImage);
             profileImage.sprite = enemy._sprite;
 
@@ -143,8 +142,8 @@ public class FightManager : MonoBehaviour
         Debug.Log("Oynat");
         foreach (CharacterBase item in Characters)
         {
-            item.Lunge.Invoke();
-            item.ClearLunge();
+            item.Lunge(item, item.target);
+            item.ClearLungeAndTarget();
             yield return new WaitForSeconds(1);
         }
         StartTour();
