@@ -22,8 +22,8 @@ public class FightManager : MonoBehaviour
 
     //public Animator animator;
 
-    [SerializeField] private Image ProfilePrefab;
-
+    [SerializeField] private Image AllyProfilePrefab;
+    [SerializeField] private Image EnemyProfilePrefab;
     [SerializeField] private Transform AllyProfileParent;
     [SerializeField] private Transform EnemyProfileParent;
     private List<Image>  AllyProfiles = new List<Image>();
@@ -51,7 +51,7 @@ public class FightManager : MonoBehaviour
         Allies = MainCharacterMoveable.instance.party;
         foreach (Ally ally in Allies)
         {
-            Image profile = Instantiate(ProfilePrefab, AllyProfileParent);
+            Image profile = Instantiate(AllyProfilePrefab, AllyProfileParent);
             AllyProfiles.Add(profile);
             profile.sprite = ally._sprite;
         }
@@ -60,9 +60,14 @@ public class FightManager : MonoBehaviour
         Enemies = enemies;
         foreach (Enemy enemy in Enemies)
         {
-            Image profile = Instantiate(ProfilePrefab, EnemyProfileParent);
-            EnemyProfiles.Add(profile);
-            profile.sprite = enemy._sprite;
+            Image profileImage = Instantiate(EnemyProfilePrefab, EnemyProfileParent);
+            EnemyProfiles.Add(profileImage);
+            profileImage.sprite = enemy._sprite;
+
+
+            Profile profile = profileImage.GetComponent<Profile>();
+            profile.character = enemy;
+            enemy.profile = profile;
         }
 
 
@@ -145,4 +150,15 @@ public class FightManager : MonoBehaviour
         StartTour();
     }
 
+
+    /*
+    public void PickCharacterState()
+    {
+
+        //düþman butonlarýný aç
+        foreach (Enemy item in Enemies)
+        {
+            Enemies[0].profile.button.interactable = true;
+        }
+    }*/
 }

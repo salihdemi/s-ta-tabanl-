@@ -5,12 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy", menuName = "Scriptable Objects/Characters/Enemy")]
 public class Enemy : CharacterBase
 {
-
-
-
     public Sprite _sprite;//inherit almak daha doðru olur ama denedim olmadý
+    public Profile profile;
 
 
+
+
+
+    public override void SetLunge(_Skill skill)
+    {
+        //secili saldýrýyý iþaretle
+        Lunge.AddListener(() => skill.Method(this, null));//!
+
+        Over();
+    }
 
     public override void Play()
     {

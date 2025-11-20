@@ -32,13 +32,7 @@ public abstract class CharacterBase : ScriptableObject
 
     public abstract void  Play();
     public abstract void Over();
-    public  void SetLunge(_Skill skill)
-    {
-        //secili saldýrýyý iþaretle
-        Lunge.AddListener(() => skill.Method(this, null));//!
-
-        Over();
-    }
+    public abstract void SetLunge(_Skill skill);
 
 
     public void GetDamage(float damage)
