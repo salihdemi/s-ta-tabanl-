@@ -8,6 +8,7 @@ public abstract class CharacterBase : ScriptableObject
 {
 
     //burada base deðerler olacak, iþlenmiþ deðerler scriptable objectin dýþýnda olmalý
+    [Header("Stats")]
     [SerializeField] private float maxHealth;
     [SerializeField] private float basePower;
     [SerializeField] private float baseSpeed;
@@ -24,11 +25,17 @@ public abstract class CharacterBase : ScriptableObject
     [HideInInspector] public CharacterBase Target;
 
 
+    [Header("Visuals")]
+    public Sprite _sprite;
 
+
+    [Header("Skills")]
     public List<_Skill> skills = new List<_Skill>();
 
 
+    [HideInInspector] public Profile profile;
 
+    #region ResetStats
     public void Heal()
     {
         currentHealth = maxHealth;
@@ -38,7 +45,16 @@ public abstract class CharacterBase : ScriptableObject
         currentPower = basePower;
         currentSpeed = baseSpeed;
     }
+    #endregion
 
+
+
+
+    #region Fight
+    public abstract void Play();
+    public abstract void Over();
+    public abstract void SetLunge(_Skill skill);
+    public abstract void PickTarget(_Skill skill);
 
     public void ClearLungeAndTarget()
     {
@@ -46,18 +62,14 @@ public abstract class CharacterBase : ScriptableObject
         Target = null;
     }
 
-
-
-
-    public abstract void  Play();
-    public abstract void Over();
-    public abstract void SetLunge(_Skill skill);
-    public abstract void PickTarget(_Skill skill);
+    #endregion
 
 
 
 
 
+
+    #region ChangeStats
     public void ForceChangeHealth(float amount)
     {
         currentHealth += amount;
@@ -93,8 +105,10 @@ public abstract class CharacterBase : ScriptableObject
         currentSpeed += amount;
     }
 
+    #endregion
 
 
+    #region Encapsulation
     public float GetHealth()
     {
         return currentHealth;
@@ -107,6 +121,6 @@ public abstract class CharacterBase : ScriptableObject
     {
         return currentSpeed;
     }
-
+    #endregion
 
 }

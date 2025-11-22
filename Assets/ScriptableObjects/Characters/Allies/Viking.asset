@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb0bbf49a2eeb047aaefae706629837, type: 3}
   m_Name: Viking
   m_EditorClassIdentifier: Assembly-CSharp::Ally
-  _name: Viking
-  speed: 3
-  Lunge:
-    m_PersistentCalls:
-      m_Calls: []
-  skills:
-  - {fileID: 11400000, guid: 9d1e90c9bfde37e4b97d4456b48556bb, type: 2}
-  attack: {fileID: 11400000, guid: 9d1e90c9bfde37e4b97d4456b48556bb, type: 2}
+  maxHealth: 100
+  basePower: 100
+  baseSpeed: 3
+  Target: {fileID: 0}
   _sprite: {fileID: -7684046354676129167, guid: eeaaaef878a00154b828322d35a8faa7, type: 3}
+  skills:
+  - {fileID: 11400000, guid: 251a13860cad8e743998f3e764727bc4, type: 2}
+  profile: {fileID: 0}
+  attack: {fileID: 11400000, guid: 9d1e90c9bfde37e4b97d4456b48556bb, type: 2}

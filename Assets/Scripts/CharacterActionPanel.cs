@@ -20,8 +20,6 @@ public class CharacterActionPanel : MonoBehaviour
     private GameObject foodsPanel;
     private GameObject toysPanel;
 
-    ///karaktere sýra gelir
-    ///bütün paneller ona göre yazýlýr
     private void CheckInstance()
     {
         if (instance == null)
@@ -124,31 +122,4 @@ public class CharacterActionPanel : MonoBehaviour
         //Oyuncaklarý yaz, !bu fonksiyona hiç gerek olmayadabilir
     }
     #endregion
-
-
-    /*
-    public void AddSkill(Skill skill)
-    {
-        //Buton
-        GameObject newSkillButton = new GameObject(skill.name + "_Button");
-        newSkillButton.transform.parent = skillsPanel.transform.GetChild(0);
-        newSkillButton.AddComponent<CanvasRenderer>();
-        newSkillButton.AddComponent<Image>();
-        Button button = newSkillButton.AddComponent<Button>();
-
-        
-        //Text
-        GameObject ButtonText = new GameObject("text");
-        ButtonText.transform.parent = newSkillButton.transform;
-        TextMeshProUGUI text = ButtonText.AddComponent<TextMeshProUGUI>();
-        text.text = skill.name;
-        text.color = Color.black;
-        //text.fontSize = 12;
-        
-        //Buton event
-        button.onClick.AddListener(() => character.SetLunge(skill));
-        button.onClick.AddListener(() => skillsPanel.SetActive(false));
-        
-    }
-    */
 }

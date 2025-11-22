@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9604f4c84f399c49a55a3379494000a, type: 3}
   m_Name: Block
   m_EditorClassIdentifier: Assembly-CSharp::Block
+  _name: Block
+  isToEnemy: 0

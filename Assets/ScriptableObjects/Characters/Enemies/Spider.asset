@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24a90bbf33992847903027ea7b22891, type: 3}
   m_Name: Spider
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _name: Spider
-  speed: 7
-  Lunge:
-    m_PersistentCalls:
-      m_Calls: []
+  maxHealth: 0
+  basePower: 10
+  baseSpeed: 0
+  Target: {fileID: 11400000, guid: a68528e2a939b604b837d49651aa2808, type: 2}
+  _sprite: {fileID: -3438905571476058607, guid: 34db587e0e7c9d54ea985722ca717eab, type: 3}
   skills:
   - {fileID: 11400000, guid: 251a13860cad8e743998f3e764727bc4, type: 2}
-  _sprite: {fileID: -3438905571476058607, guid: 34db587e0e7c9d54ea985722ca717eab, type: 3}
+  profile: {fileID: 0}

@@ -6,59 +6,21 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Ally", menuName = "Scriptable Objects/Characters/Ally")]
 public class Ally : CharacterBase
 {
+
     public _Skill attack;
 
-    public Sprite _sprite;//inherit almak daha doðru olur ama denedim olmadý!
-
-    [HideInInspector] public Profile profile;
 
 
 
 
 
-
-    public override void SetLunge(_Skill skill)
-    {
-        //secili saldýrýyý iþaretle
-        Lunge = skill.Method;
-
-        CharacterActionPanel.instance.DisableAllPanels();
-
-        //hedef seçecek
-        PickTarget(skill);
-    }
-    public override void PickTarget(_Skill skill)
-    {
-        if (skill.isToEnemy)
-        {
-            foreach(Profile profile in FightManager.instance.EnemyProfiles)
-            {
-                profile.button.interactable = true;
-                profile.button.onClick.AddListener(() => PickThisAsTarget(profile));
-            }
-        }
-        else
-        {
-            foreach (Profile profile in FightManager.instance.AllyProfiles)
-            {
-                profile.button.interactable = true;
-                profile.button.onClick.AddListener(() => PickThisAsTarget(profile));
-            }
-        }
-    }
-    public void PickThisAsTarget(Profile profile)
-    {
-        Target = profile.character;
-
-        Over();
-    }
+    #region Fight
     public override void Play()
     {
         CharacterActionPanel.instance.WriteThings(this);
 
         CharacterActionPanel.instance.gameObject.SetActive(true);
     }
-
     public override void Over()
     {
         foreach (Profile profile in FightManager.instance.EnemyProfiles)
@@ -77,7 +39,42 @@ public class Ally : CharacterBase
 
         FightManager.instance.CheckNextCharacter();
     }
+    public override void SetLunge(_Skill skill)
+    {
+        //secili saldýrýyý iþaretle
+        Lunge = skill.Method;
 
+        CharacterActionPanel.instance.DisableAllPanels();
+
+        //hedef seçecek
+        PickTarget(skill);
+    }
+    public override void PickTarget(_Skill skill)
+    {
+        if (skill.isToEnemy)
+        {
+            foreach (Profile profile in FightManager.instance.EnemyProfiles)
+            {
+                profile.button.interactable = true;
+                profile.button.onClick.AddListener(() => SetTarget(profile));
+            }
+        }
+        else
+        {
+            foreach (Profile profile in FightManager.instance.AllyProfiles)
+            {
+                profile.button.interactable = true;
+                profile.button.onClick.AddListener(() => SetTarget(profile));
+            }
+        }
+    }
+    public void SetTarget(Profile profile)
+    {
+        Target = profile.character;
+
+        Over();
+    }
+    #endregion
 
 
     public void LearnSkill(_Skill skill)

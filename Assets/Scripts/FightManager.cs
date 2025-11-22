@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class FightManager : MonoBehaviour
@@ -13,20 +14,25 @@ public class FightManager : MonoBehaviour
     {
         instance = this;
     }
-
     private CharacterBase[] Characters = new CharacterBase[] { };
-    public Ally[] Allies = new Ally[] { };
-    public Enemy[] Enemies = new Enemy[] { };
 
-    private int characterOrder;
 
     //public Animator animator;
-
+    [Header("Profiles")]
     [SerializeField] private Profile ProfilePrefab;
     [SerializeField] private Transform AllyProfileParent;
     [SerializeField] private Transform EnemyProfileParent;
-    public List<Profile>  AllyProfiles = new List<Profile>();
-    public List<Profile> EnemyProfiles = new List<Profile>();
+    [HideInInspector] public List<Profile>  AllyProfiles = new List<Profile>();
+    [HideInInspector] public List<Profile> EnemyProfiles = new List<Profile>();
+
+
+
+
+
+
+    private int characterOrder;
+
+
 
 
     public void StartFight(Enemy[] enemies)//Fonksiyonla!
@@ -37,47 +43,14 @@ public class FightManager : MonoBehaviour
         {Debug.LogError("Düþman partisi boþ");return; }
 
 
+
         gameObject.SetActive(true);
 
+        Ally[] allies = MainCharacterMoveable.instance.party;
 
-
-
-        //Dostlarý diz
-        Allies = MainCharacterMoveable.instance.party;
-        foreach (Ally ally in Allies)
-        {
-            Profile profile = Instantiate(ProfilePrefab, AllyProfileParent);
-            Image profileImage = profile.GetComponent<Image>();
-            AllyProfiles.Add(profile);
-            profile.character = ally;
-            ally.profile = profile;
-            profileImage.sprite = ally._sprite;
-        }
-
-
-        //Düþmanlarý diz
-        Enemies = enemies;
-        foreach (Enemy enemy in Enemies)
-        {
-
-            Profile profile = Instantiate(ProfilePrefab, EnemyProfileParent);
-            Image profileImage = profile.GetComponent<Image>();
-            EnemyProfiles.Add(profile);
-            profile.character = enemy;
-            enemy.profile = profile;
-            profileImage.sprite = enemy._sprite;
-        }
-
-
-
-
-
-
-
-        Characters = Enemies.Cast<CharacterBase>().Concat(Allies.Where(p => p != null).Cast<CharacterBase>()).ToArray();
-
-
-
+        SortAllies(allies);
+        SortEnemies(enemies);
+        Characters = enemies.Cast<CharacterBase>().Concat(allies.Where(p => p != null).Cast<CharacterBase>()).ToArray();
 
         StartTour();
     }
@@ -88,7 +61,6 @@ public class FightManager : MonoBehaviour
     public void FinishFight()
     {
         //Ödül ver*
-        Characters = new CharacterBase[] { };
         ClearCharacters();
 
         gameObject.SetActive(false);
@@ -96,7 +68,8 @@ public class FightManager : MonoBehaviour
 
 
 
-    public void StartTour()
+
+    private void StartTour()
     {
         SortWithSpeed();
         characterOrder = 0;
@@ -111,8 +84,8 @@ public class FightManager : MonoBehaviour
         if (characterOrder == Characters.Length)
         {
             Debug.Log("tüm hamleler yapýldý");
-            //oynat
-            StartCoroutine(Play());
+            
+            StartCoroutine(Play());//oynat
         }
         else
         {
@@ -125,9 +98,45 @@ public class FightManager : MonoBehaviour
         Debug.Log(Characters[characterOrder - 1].name + " hamlesini seçiyor");
         Characters[characterOrder - 1].Play();
     }
+
+    private void SortAllies(Ally[] allies)
+    {
+        //Dostlarý diz
+        for (int i = 0; i < allies.Length; i++)
+        {
+            Ally ally = allies[i];
+
+            Profile profile = Instantiate(ProfilePrefab, AllyProfileParent);
+            Image profileImage = profile.GetComponent<Image>();
+
+            //profil
+            AllyProfiles.Add(profile);
+            profile.character = ally;
+            ally.profile = profile;
+            profileImage.sprite = ally._sprite;
+        }
+    }
+    private void SortEnemies(Enemy[] enemies)
+    {
+        //Düþmanlarý diz
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            Enemy enemy = enemies[i];
+
+            Profile profile = Instantiate(ProfilePrefab, EnemyProfileParent);
+            Image profileImage = profile.GetComponent<Image>();
+
+            //profil
+            EnemyProfiles.Add(profile);
+            profile.character = enemy;
+            enemy.profile = profile;
+            profileImage.sprite = enemy._sprite;
+        }
+    }
     private void ClearCharacters()
     {
-        Debug.Log(AllyProfiles);
+        Characters = new CharacterBase[] { };
+
         for (int i = 0; i < AllyProfiles.Count; i++)
         { Destroy(AllyProfiles[i].gameObject); }
         AllyProfiles.Clear();
@@ -142,24 +151,14 @@ public class FightManager : MonoBehaviour
     private IEnumerator Play()
     {
         Debug.Log("Oynat");
-        foreach (CharacterBase item in Characters)
+        for (int i = 0;i < Characters.Length; i++)
         {
-            item.Lunge(item, item.Target);
-            item.ClearLungeAndTarget();
+            CharacterBase item = Characters[i];
+            item.Lunge(item, item.Target);//Hamleyi yap
+            item.ClearLungeAndTarget();//Hamleyi temizle
+
             yield return new WaitForSeconds(1);
         }
         StartTour();
     }
-
-
-    /*
-    public void PickCharacterState()
-    {
-
-        //düþman butonlarýný aç
-        foreach (Enemy item in Enemies)
-        {
-            Enemies[0].profile.button.interactable = true;
-        }
-    }*/
 }

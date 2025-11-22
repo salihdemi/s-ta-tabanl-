@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb0bbf49a2eeb047aaefae706629837, type: 3}
   m_Name: "B\xFCy\xFCc\xFC"
   m_EditorClassIdentifier: Assembly-CSharp::Ally
-  _name: "B\xFCy\xFCc\xFC"
-  speed: 4
-  Lunge:
-    m_PersistentCalls:
-      m_Calls: []
-  skills:
-  - {fileID: 11400000, guid: 9d1e90c9bfde37e4b97d4456b48556bb, type: 2}
-  attack: {fileID: 11400000, guid: 9d1e90c9bfde37e4b97d4456b48556bb, type: 2}
+  maxHealth: 100
+  basePower: 100
+  baseSpeed: 1
+  Target: {fileID: 0}
   _sprite: {fileID: 3422849895820167655, guid: 350468460324d7f4ea9703444d789cf2, type: 3}
+  skills:
+  - {fileID: 11400000, guid: bf0fabd5ef094fa49b9a76c9bb19787c, type: 2}
+  profile: {fileID: 0}
+  attack: {fileID: 11400000, guid: 9d1e90c9bfde37e4b97d4456b48556bb, type: 2}
