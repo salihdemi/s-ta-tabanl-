@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Burst", menuName = "Scriptable Objects/Skills/Burst")]
-public class Burst : _Skill
+[CreateAssetMenu(fileName = "ChargedAttack", menuName = "Scriptable Objects/Skills/ChargedAttack")]
+public class ProcWeakness : _Skill
 {
     public override void Method(CharacterBase user, CharacterBase target)
     {
@@ -11,6 +11,6 @@ public class Burst : _Skill
         //sesi oynat
 
         //saldýrýyý yap
-        target.GetDamage(user.baseAttackPower * 3);
+        target.ChangePower(-5);
     }
 }

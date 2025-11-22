@@ -11,6 +11,6 @@ public class Attack : _Skill
         //sesi oynat
 
         //saldýrýyý yap
-        target.GetDamage(user.baseAttackPower);
+        target.ChangeHealth(-user.GetPower());
     }
 }

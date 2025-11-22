@@ -11,6 +11,6 @@ public class Block : _Skill
         //sesi oynat
 
         //saldýrýyý yap
-        user.health++;
+        user.ChangeHealth(user.GetPower());
     }
 }

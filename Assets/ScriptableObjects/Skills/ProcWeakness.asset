@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38cae77c23ad024a93e7c4267c2809a, type: 3}
-  m_Name: Slice
-  m_EditorClassIdentifier: Assembly-CSharp::Slice
+  m_Script: {fileID: 11500000, guid: 0dc72fbb60a00a44e810fc1998b8a31d, type: 3}
+  m_Name: ProcWeakness
+  m_EditorClassIdentifier: Assembly-CSharp::ChargedAttack
   isToEnemy: 1

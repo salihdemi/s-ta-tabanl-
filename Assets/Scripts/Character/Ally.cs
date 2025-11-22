@@ -10,7 +10,7 @@ public class Ally : CharacterBase
 
     public Sprite _sprite;//inherit almak daha doðru olur ama denedim olmadý!
 
-    public Profile profile;
+    [HideInInspector] public Profile profile;
 
 
 

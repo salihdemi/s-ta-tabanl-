@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ChargedAttack", menuName = "Scriptable Objects/Skills/ChargedAttack")]
-public class ChargedAttack : _Skill
+[CreateAssetMenu(fileName = "Slice", menuName = "Scriptable Objects/Skills/Slice")]
+public class Slow : _Skill
 {
     public override void Method(CharacterBase user, CharacterBase target)
     {
@@ -11,6 +11,6 @@ public class ChargedAttack : _Skill
         //sesi oynat
 
         //saldýrýyý yap
-        target.GetDamage(user.baseAttackPower / 2);
+        target.ChangeSpeed(-user.GetPower());
     }
 }

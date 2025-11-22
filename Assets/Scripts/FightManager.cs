@@ -104,7 +104,7 @@ public class FightManager : MonoBehaviour
     }
     private void SortWithSpeed()
     {
-        Array.Sort(Characters, (a, b) => b.currentSpeed.CompareTo(a.currentSpeed));
+        Array.Sort(Characters, (a, b) => b.GetSpeed().CompareTo(a.GetSpeed()));
     }
     public void CheckNextCharacter()
     {

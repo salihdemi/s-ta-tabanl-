@@ -9,7 +9,7 @@ public abstract class _Skill : ScriptableObject
 {
     //private AnimationClip clip;
     //private AudioClip clip;
-
+    public string _name;
     public bool isToEnemy;
     public abstract void Method(CharacterBase user, CharacterBase target);
 

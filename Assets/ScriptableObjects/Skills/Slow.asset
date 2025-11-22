@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e1bc5ffa6b9b54cbbbb99a347112e6, type: 3}
-  m_Name: Burst
-  m_EditorClassIdentifier: Assembly-CSharp::Burst
+  m_Script: {fileID: 11500000, guid: e38cae77c23ad024a93e7c4267c2809a, type: 3}
+  m_Name: Slow
+  m_EditorClassIdentifier: Assembly-CSharp::Slice
   isToEnemy: 1

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Slice", menuName = "Scriptable Objects/Skills/Slice")]
-public class Slice : _Skill
+[CreateAssetMenu(fileName = "Burst", menuName = "Scriptable Objects/Skills/Burst")]
+public class Heal : _Skill
 {
     public override void Method(CharacterBase user, CharacterBase target)
     {
@@ -11,6 +11,6 @@ public class Slice : _Skill
         //sesi oynat
 
         //saldýrýyý yap
-        target.GetDamage(user.baseAttackPower * 2);
+        target.ChangeHealth(target.GetPower() * 3);
     }
 }
