@@ -5,6 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy", menuName = "Scriptable Objects/Characters/Enemy")]
 public class Enemy : CharacterBase
 {
+    Enemy()
+    {
+        Heal();
+        ResetStats();
+    }
 
 
     #region Fight

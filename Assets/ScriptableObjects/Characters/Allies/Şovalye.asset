@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u015Eovalye"
   m_EditorClassIdentifier: Assembly-CSharp::Ally
   maxHealth: 100
-  basePower: 100
+  basePower: 20
   baseSpeed: 4
   Target: {fileID: 0}
   _sprite: {fileID: 4495478712733764576, guid: 838545d8300eb52449d69b1a1ac126d3, type: 3}

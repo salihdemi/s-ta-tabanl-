@@ -35,6 +35,10 @@ public abstract class CharacterBase : ScriptableObject
 
     [HideInInspector] public Profile profile;
 
+
+
+
+
     #region ResetStats
     public void Heal()
     {

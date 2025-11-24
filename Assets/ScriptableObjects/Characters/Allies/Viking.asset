@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Viking
   m_EditorClassIdentifier: Assembly-CSharp::Ally
   maxHealth: 100
-  basePower: 100
+  basePower: 20
   baseSpeed: 3
   Target: {fileID: 0}
   _sprite: {fileID: -7684046354676129167, guid: eeaaaef878a00154b828322d35a8faa7, type: 3}

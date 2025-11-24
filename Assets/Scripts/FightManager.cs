@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -31,8 +32,6 @@ public class FightManager : MonoBehaviour
     private int characterOrder;
 
 
-
-
     public void StartFight(Enemy[] enemies)//Fonksiyonla!
     {
         if(MainCharacterMoveable.instance.party.Length < 1)
@@ -45,6 +44,8 @@ public class FightManager : MonoBehaviour
         gameObject.SetActive(true);
 
         Ally[] allies = MainCharacterMoveable.instance.party;
+                    //.Where(a => a.GetHealth() > 0)
+                    //.ToArray();
 
         SortAllies(allies);
         SortEnemies(enemies);
@@ -63,13 +64,15 @@ public class FightManager : MonoBehaviour
     public void LoseFight()
     {
         //ölüm ekraný* vs
+        //ClearCharacters();
     }
     public void FinishFight()
     {
         //Ödül ver*
         ClearCharacters();
-
-        gameObject.SetActive(false);
+        //moveable
+        CharacterActionPanel.instance.gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
 
@@ -190,6 +193,16 @@ public class FightManager : MonoBehaviour
         AllyProfiles.Remove(ally.profile);
 
         Destroy(ally.profile.gameObject);
+
+
+        if (AllyProfiles.Count == 0)
+        {
+            LoseFight();
+        }
+        else
+        {
+            StartTour();
+        }
     }
     private void KillEnemy(Enemy enemy)
     {
@@ -197,6 +210,15 @@ public class FightManager : MonoBehaviour
         EnemyProfiles.Remove(enemy.profile);
 
         Destroy(enemy.profile.gameObject);
+
+        if(EnemyProfiles.Count == 0)
+        {
+            FinishFight();
+        }
+        else
+        {
+            StartTour();
+        }
     }
 
 
@@ -215,6 +237,5 @@ public class FightManager : MonoBehaviour
 
         CheckDie();
 
-        StartTour();
     }
 }

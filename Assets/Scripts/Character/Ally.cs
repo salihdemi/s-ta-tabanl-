@@ -7,9 +7,13 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Ally", menuName = "Scriptable Objects/Characters/Ally")]
 public class Ally : CharacterBase
 {
+    Ally()
+    {
+        Heal();
+        ResetStats();
+    }
 
     public _Skill attack;
-
 
 
 
