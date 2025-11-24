@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -14,7 +15,7 @@ public class FightManager : MonoBehaviour
     {
         instance = this;
     }
-    private CharacterBase[] Characters = new CharacterBase[] { };
+    private List<CharacterBase> Characters = new List<CharacterBase> { };
 
 
     //public Animator animator;
@@ -24,9 +25,6 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Transform EnemyProfileParent;
     [HideInInspector] public List<Profile>  AllyProfiles = new List<Profile>();
     [HideInInspector] public List<Profile> EnemyProfiles = new List<Profile>();
-
-
-
 
 
 
@@ -50,7 +48,15 @@ public class FightManager : MonoBehaviour
 
         SortAllies(allies);
         SortEnemies(enemies);
-        Characters = enemies.Cast<CharacterBase>().Concat(allies.Where(p => p != null).Cast<CharacterBase>()).ToArray();
+        Characters = enemies
+                    .Cast<CharacterBase>()
+                    .Concat(allies
+                    .Where(p => p != null)
+                    .Cast<CharacterBase>())
+                    .ToList();
+
+
+        ResetStats();
 
         StartTour();
     }
@@ -77,11 +83,11 @@ public class FightManager : MonoBehaviour
     }
     private void SortWithSpeed()
     {
-        Array.Sort(Characters, (a, b) => b.GetSpeed().CompareTo(a.GetSpeed()));
+        Characters.Sort((a, b) => b.GetSpeed().CompareTo(a.GetSpeed()));
     }
     public void CheckNextCharacter()
     {
-        if (characterOrder == Characters.Length)
+        if (characterOrder == Characters.Count)
         {
             Debug.Log("tüm hamleler yapýldý");
             
@@ -98,6 +104,8 @@ public class FightManager : MonoBehaviour
         Debug.Log(Characters[characterOrder - 1].name + " hamlesini seçiyor");
         Characters[characterOrder - 1].Play();
     }
+
+
 
     private void SortAllies(Ally[] allies)
     {
@@ -133,9 +141,17 @@ public class FightManager : MonoBehaviour
             profileImage.sprite = enemy._sprite;
         }
     }
+    private void ResetStats()
+    {
+        for (int i = 0; i < Characters.Count; i++)
+        {
+            CharacterBase character = Characters[i];
+            character.ResetStats();
+        }
+    }
     private void ClearCharacters()
     {
-        Characters = new CharacterBase[] { };
+        Characters = new List<CharacterBase> { };
 
         for (int i = 0; i < AllyProfiles.Count; i++)
         { Destroy(AllyProfiles[i].gameObject); }
@@ -148,10 +164,47 @@ public class FightManager : MonoBehaviour
     }
 
 
+    public void CheckDie()
+    {
+        for (int i = 0; i < Characters.Count; i++)
+        {
+            CharacterBase character = Characters[i];
+            if (character.IsDied())
+            {
+                if (character is Ally)
+                {
+                    KillAlly((Ally)character);
+                }
+                else if (character is Enemy)
+                {
+                    KillEnemy((Enemy)character);
+                }
+            }
+
+
+        }
+    }
+    private void KillAlly(Ally ally)
+    {
+        Characters.Remove(ally);
+        AllyProfiles.Remove(ally.profile);
+
+        Destroy(ally.profile.gameObject);
+    }
+    private void KillEnemy(Enemy enemy)
+    {
+        Characters.Remove(enemy);
+        EnemyProfiles.Remove(enemy.profile);
+
+        Destroy(enemy.profile.gameObject);
+    }
+
+
+
     private IEnumerator Play()
     {
         Debug.Log("Oynat");
-        for (int i = 0;i < Characters.Length; i++)
+        for (int i = 0;i < Characters.Count; i++)
         {
             CharacterBase item = Characters[i];
             item.Lunge(item, item.Target);//Hamleyi yap
@@ -159,6 +212,9 @@ public class FightManager : MonoBehaviour
 
             yield return new WaitForSeconds(1);
         }
+
+        CheckDie();
+
         StartTour();
     }
 }

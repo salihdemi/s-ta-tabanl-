@@ -13,8 +13,6 @@ public class Ally : CharacterBase
 
 
 
-
-
     #region Fight
     public override void Play()
     {

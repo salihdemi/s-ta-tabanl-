@@ -5,12 +5,12 @@ public class Heal : _Skill
 {
     public override void Method(CharacterBase user, CharacterBase target)
     {
-        Debug.Log(user.name + " " + target.name + "'e " + name + " saldýrýsý yaptý");
 
         //animasyonu oynat
         //sesi oynat
 
         //saldýrýyý yap
         target.ChangeHealth(target.GetPower() * 3);
+        Debug.Log(user.name + " " + target.name + "'i " + name + " ile " + user.GetPower() * 3 + " iyileþtirdi");
     }
 }

@@ -7,9 +7,6 @@ public class Enemy : CharacterBase
 {
 
 
-
-
-
     #region Fight
     public override void Play()
     {

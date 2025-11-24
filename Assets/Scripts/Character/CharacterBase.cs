@@ -50,7 +50,7 @@ public abstract class CharacterBase : ScriptableObject
 
 
 
-    #region Fight
+    #region FightLoop
     public abstract void Play();
     public abstract void Over();
     public abstract void SetLunge(_Skill skill);
@@ -69,14 +69,16 @@ public abstract class CharacterBase : ScriptableObject
 
 
 
-    #region ChangeStats
-    public void ForceChangeHealth(float amount)
+    #region Fight
+    public void ForceChangeHealth(float amount)//Overhealth
     {
         currentHealth += amount;
         if (currentHealth < 0)
         {
             currentHealth = 0;
             //öl
+
+
             //herkes öldü mü diye kontrol et
         }
         //yaz
@@ -91,8 +93,6 @@ public abstract class CharacterBase : ScriptableObject
         if(currentHealth < 0)
         {
             currentHealth = 0;
-            //öl
-            //herkes öldü mü diye kontrol et
         }
         //yaz
     }
@@ -103,6 +103,17 @@ public abstract class CharacterBase : ScriptableObject
     public void ChangeSpeed(float amount)
     {
         currentSpeed += amount;
+    }
+    public bool IsDied()
+    {
+        if (currentHealth <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     #endregion

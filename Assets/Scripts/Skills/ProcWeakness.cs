@@ -5,12 +5,13 @@ public class ProcWeakness : _Skill
 {
     public override void Method(CharacterBase user, CharacterBase target)
     {
-        Debug.Log(user.name + " " + target.name + "'e " + name + " saldýrýsý yaptý");
 
         //animasyonu oynat
         //sesi oynat
 
         //saldýrýyý yap
+
         target.ChangePower(-5);
+        Debug.Log(user.name + " " + target.name + "'a " + name + " ile " + 5 + " zayýflattý");
     }
 }
