@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,10 +48,11 @@ public class Ally : CharacterBase
         CharacterActionPanel.instance.DisableAllPanels();
 
         //hedef seçecek
-        PickTarget(skill);
+        OpenPickTargetMenu(skill);
     }
-    public override void PickTarget(_Skill skill)
+    public override void OpenPickTargetMenu(_Skill skill)
     {
+        CharacterActionPanel.instance.gameObject.SetActive(false);
         if (skill.isToEnemy)
         {
             foreach (Profile profile in FightManager.instance.EnemyProfiles)

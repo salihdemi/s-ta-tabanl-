@@ -54,7 +54,7 @@ public abstract class CharacterBase : ScriptableObject
     public abstract void Play();
     public abstract void Over();
     public abstract void SetLunge(_Skill skill);
-    public abstract void PickTarget(_Skill skill);
+    public abstract void OpenPickTargetMenu(_Skill skill);
 
     public void ClearLungeAndTarget()
     {

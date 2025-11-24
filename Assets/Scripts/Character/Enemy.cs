@@ -25,9 +25,9 @@ public class Enemy : CharacterBase
     {
         Lunge = skill.Method;//secili saldýrýyý iþaretle
 
-        PickTarget(skill);//Hedef seçme ekranýný aç
+        OpenPickTargetMenu(skill);//Hedef seçme ekranýný aç
     }
-    public override void PickTarget(_Skill skill)
+    public override void OpenPickTargetMenu(_Skill skill)
     {
         Target = MainCharacterMoveable.instance.party[0];//default hedef!
 
