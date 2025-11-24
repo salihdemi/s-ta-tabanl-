@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Slice", menuName = "Scriptable Objects/Skills/Slice")]
 public class Slow : _Skill
 {
-    public override void Method(CharacterBase user, CharacterBase target)
+    public override void Method(Profile user, Profile target)
     {
 
         //animasyonu oynat

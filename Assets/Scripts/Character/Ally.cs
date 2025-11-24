@@ -1,85 +1,28 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 
 [CreateAssetMenu(fileName = "Ally", menuName = "Scriptable Objects/Characters/Ally")]
 public class Ally : CharacterBase
 {
+
+
+    [HideInInspector] public AllyProfile characterAlly;
     Ally()
     {
-        Heal();
-        ResetStats();
+
     }
 
-    public _Skill attack;
 
-
-
-    #region Fight
-    public override void Play()
+    public override void MakeProfile()
     {
-        CharacterActionPanel.instance.WriteThings(this);
-
-        CharacterActionPanel.instance.gameObject.SetActive(true);
+        profile = FightManager.instance.MakeAllyProfile();
+        profile.character = this;
+        profile.gameObject.name = name;
     }
-    public override void Over()
-    {
-        foreach (Profile profile in FightManager.instance.EnemyProfiles)
-        {
-            profile.button.interactable = false;
-            profile.button.onClick.RemoveAllListeners();
-        }
-
-        foreach (Profile profile in FightManager.instance.AllyProfiles)
-        {
-            profile.button.interactable = false;
-            profile.button.onClick.RemoveAllListeners();
-        }
-
-        CharacterActionPanel.instance.gameObject.SetActive(false);
-
-        FightManager.instance.CheckNextCharacter();
-    }
-    public override void SetLunge(_Skill skill)
-    {
-        //secili saldýrýyý iþaretle
-        Lunge = skill.Method;
-
-        CharacterActionPanel.instance.DisableAllPanels();
-
-        //hedef seçecek
-        OpenPickTargetMenu(skill);
-    }
-    public override void OpenPickTargetMenu(_Skill skill)
-    {
-        CharacterActionPanel.instance.gameObject.SetActive(false);
-        if (skill.isToEnemy)
-        {
-            foreach (Profile profile in FightManager.instance.EnemyProfiles)
-            {
-                profile.button.interactable = true;
-                profile.button.onClick.AddListener(() => SetTarget(profile));
-            }
-        }
-        else
-        {
-            foreach (Profile profile in FightManager.instance.AllyProfiles)
-            {
-                profile.button.interactable = true;
-                profile.button.onClick.AddListener(() => SetTarget(profile));
-            }
-        }
-    }
-    public void SetTarget(Profile profile)
-    {
-        Target = profile.character;
-
-        Over();
-    }
-    #endregion
-
 
     public void LearnSkill(_Skill skill)
     {

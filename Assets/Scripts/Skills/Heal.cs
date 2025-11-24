@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Burst", menuName = "Scriptable Objects/Skills/Burst")]
 public class Heal : _Skill
 {
-    public override void Method(CharacterBase user, CharacterBase target)
+    public override void Method(Profile user, Profile target)
     {
 
         //animasyonu oynat

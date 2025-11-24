@@ -7,33 +7,14 @@ public class Enemy : CharacterBase
 {
     Enemy()
     {
-        Heal();
-        ResetStats();
+        //Heal();
+        //profile.ResetStats();
     }
 
-
-    #region Fight
-    public override void Play()
+    public override void MakeProfile()
     {
-        _Skill currentskill = skills[Random.Range(0, skills.Count - 1)]; //Random hamle ver
-        SetLunge(currentskill);
+        profile = FightManager.instance.MakeEnemyProfile();
+        profile.character = this;
+        profile.gameObject.name = name;
     }
-
-    public override void Over()
-    {
-        FightManager.instance.CheckNextCharacter();
-    }
-    public override void SetLunge(_Skill skill)
-    {
-        Lunge = skill.Method;//secili saldýrýyý iþaretle
-
-        OpenPickTargetMenu(skill);//Hedef seçme ekranýný aç
-    }
-    public override void OpenPickTargetMenu(_Skill skill)
-    {
-        Target = MainCharacterMoveable.instance.party[0];//default hedef!
-
-        Over();
-    }
-    #endregion
 }

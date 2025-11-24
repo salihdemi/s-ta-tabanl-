@@ -240,7 +240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe5fd2c0250954e911be006bdaa277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProfilePrefab: {fileID: -3942122974242790174, guid: 857798f39e9c69448832bf6dad7e072f, type: 3}
+  Characters: []
+  AllyProfilePrefab: {fileID: 8979091839921229595, guid: 857798f39e9c69448832bf6dad7e072f, type: 3}
+  EnemyProfilePrefab: {fileID: 742744003490145377, guid: 96f4bc3d0b8c9e742ba2ace51c4740ed, type: 3}
   AllyProfileParent: {fileID: 1024666692}
   EnemyProfileParent: {fileID: 567234374}
   AllyProfiles: []
@@ -980,6 +982,10 @@ PrefabInstance:
     - target: {fileID: 6182487853994404768, guid: fbdaca29569714c42962068a5e795053, type: 3}
       propertyPath: m_Name
       value: MoveableEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182487853994404768, guid: fbdaca29569714c42962068a5e795053, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

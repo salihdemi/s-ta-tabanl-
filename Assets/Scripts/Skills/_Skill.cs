@@ -11,9 +11,9 @@ public abstract class _Skill : ScriptableObject
     //private AudioClip clip;
     public string _name;
     public bool isToEnemy;
-    public abstract void Method(CharacterBase user, CharacterBase target);
+    public abstract void Method(Profile user, Profile target);
 
-    public void AddButton(Ally character, GameObject skillsPanel)
+    public void AddButton(AllyProfile character, GameObject skillsPanel)
     {
         //Buton
         GameObject newSkillButton = new GameObject(name + "_Button");

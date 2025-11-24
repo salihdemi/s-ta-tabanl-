@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ChargedAttack", menuName = "Scriptable Objects/Skills/ChargedAttack")]
 public class ProcWeakness : _Skill
 {
-    public override void Method(CharacterBase user, CharacterBase target)
+    public override void Method(Profile user, Profile target)
     {
 
         //animasyonu oynat

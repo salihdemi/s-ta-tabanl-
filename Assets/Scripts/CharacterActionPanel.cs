@@ -81,7 +81,7 @@ public class CharacterActionPanel : MonoBehaviour
         toysPanel.SetActive(false);
     }
 
-    public void WriteThings(Ally character)
+    public void WriteThings(AllyProfile character)
     {
         WriteName(character);
         WriteAttack(character);
@@ -92,25 +92,25 @@ public class CharacterActionPanel : MonoBehaviour
 
 
     #region Write
-    private void WriteName(Ally character)
+    private void WriteName(AllyProfile character)
     {
         nameText.text = character.name;
     }
-    private void WriteAttack(Ally character)
+    private void WriteAttack(AllyProfile profile)
     {
         attackButton.onClick.RemoveAllListeners();
-        attackButton.onClick.AddListener(() => character.SetLunge(character.attack));
+        attackButton.onClick.AddListener(() => profile.SetLunge(profile.character.attack));
     }
-    private void WriteSkillsPanel(Ally character)
+    private void WriteSkillsPanel(AllyProfile profile)
     {
         foreach (Transform child in skillsPanel.transform.GetChild(0))
         {
             Destroy(child.gameObject);
         }
 
-        foreach (_Skill skill in character.skills)
+        foreach (_Skill skill in profile.character.skills)
         {
-            skill.AddButton(character, skillsPanel);
+            skill.AddButton(profile, skillsPanel);
         }
     }
     private void WriteFoodsPanel()

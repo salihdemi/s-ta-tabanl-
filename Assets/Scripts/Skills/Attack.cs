@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attack", menuName = "Scriptable Objects/Skills/Attack")]
 public class Attack : _Skill
 {
-    public override void Method(CharacterBase user, CharacterBase target)
+    public override void Method(Profile user, Profile target)
     {
 
         //animasyonu oynat
